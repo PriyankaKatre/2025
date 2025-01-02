@@ -1,9 +1,8 @@
 
 
-import { DoctorsSection } from "@/components/doctors-section";
-import { HeroSection } from "@/components/heroSection";
-import { SpecialtySection } from "@/components/specialty-section";
-
+import { DoctorsSection } from "@/components/Doctors-section";
+import { HeroSection } from "@/components/HeroSection";
+import { SpecialtySection } from "@/components/Specialty-section";
 
 export default function Home() {
     return (

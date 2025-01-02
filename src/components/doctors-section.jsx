@@ -1,32 +1,6 @@
-import { DoctorCard } from "./doctor-card";
-import doctor1 from '../assets/doctor1.png';
-import doctor6 from "../assets/doctor6.png";
-import doctor3 from "../assets/doctor3.png";
-import doctor4 from "../assets/doctor4.png";
-
-const doctors = [
-    {
-        name: "Dr. Richard James",
-        specialty: "General physician",
-        imageUrl: doctor1,
-    },
-    {
-        name: "Dr. Emily Larson",
-        specialty: "Gynecologist",
-        imageUrl: doctor4,
-    },
-    {
-        name: "Dr. Sarah Patel",
-        specialty: "Dermatologist",
-        imageUrl: doctor3,
-    },
-    {
-        name: "Dr. Christopher Lee",
-        specialty: "Pediatrician",
-        imageUrl: doctor6,
-    },
-    // Add more doctors as needed
-];
+import { DoctorCard } from "./Doctor-card";
+import { Button } from "./ui/button";
+import { doctors } from "@/data/doctors";
 
 export function DoctorsSection() {
     return (
@@ -39,10 +13,16 @@ export function DoctorsSection() {
                     Discover our highly recommended medical experts
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {doctors.map((doctor, index) => (
+                    {doctors.slice(0, 4).map((doctor, index) => (
                         <DoctorCard key={index} {...doctor} />
                     ))}
                 </div>
+                <Button
+                    className="bg-blue-50 text-gray-600 px-12 py-3 rounded-full mt-10"
+                    onClick="navigate('/doctors')"
+                >
+                    More
+                </Button>
             </div>
         </section>
     );

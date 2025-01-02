@@ -1,6 +1,13 @@
 import {  Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import logo from '../assets/logo.svg'
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export function Header() {
     return (
@@ -47,6 +54,28 @@ export function Header() {
                     <Button size="lg" className="bg-teal-600 hover:bg-teal-600">
                         Create account
                     </Button>
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <button className="relative h-8 w-8 rounded-full">
+                                <Avatar className="h-8 w-8">
+                                    <AvatarImage
+                                        src="/placeholder.svg"
+                                        alt="Profile"
+                                    />
+                                    <AvatarFallback>U</AvatarFallback>
+                                </Avatar>
+                            </button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end" className="w-56">
+                            <DropdownMenuItem asChild>
+                                <Link to="/my-profile">My Profile</Link>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem asChild>
+                                <Link to="/my-appointments">My Appointments</Link>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem>Logout</DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
                 </div>
             </div>
         </header>
