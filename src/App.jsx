@@ -4,7 +4,6 @@ import './App.css'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainLayout from './layout/MainLayout';
 import Home from "./pages/Home";
-import { DoctorsSection } from "./components/Doctors-section";
 import Doctors from "./pages/Doctors";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -27,7 +26,7 @@ export default function App() {
                 { path: "/contact", element: <Contact /> },
                 { path: "/my-profile", element: <Myprofile /> },
                 { path: "/my-appointments", element: <MyAppointments /> },
-                { path: "/appointments/:id", element: <Appointments /> },
+                { path: "/appointments/:docId", element: <Appointments /> },
             ],
         },
     ]);

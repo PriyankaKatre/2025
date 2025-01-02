@@ -2,12 +2,12 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { useNavigate } from "react-router-dom";
 
-export function DoctorCard({ _id, name, specialty, image, available = true }) {
+export function DoctorCard({ _id, name, speciality, image, available = true }) {
     const navigate = useNavigate();
     return (
         <Card
             className="overflow-hidden"
-            onClick={() => navigate(`/appointment/${_id}`)}
+            onClick={() => navigate(`/appointments/${_id}`)}
         >
             <CardContent className="p-0">
                 <img
@@ -27,7 +27,9 @@ export function DoctorCard({ _id, name, specialty, image, available = true }) {
                             </Badge>
                         )}
                     </div>
-                    <p className="text-sm text-muted-foreground">{specialty}</p>
+                    <p className="text-sm text-muted-foreground">
+                        {speciality}
+                    </p>
                 </div>
             </CardContent>
         </Card>

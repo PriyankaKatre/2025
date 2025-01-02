@@ -116,6 +116,20 @@ export const doctors = [
             line2: "5th Avenue, New York",
         },
     },
+    {
+        _id: "doc21",
+        name: "Dr. Richa James",
+        image: doctor6,
+        speciality: "General physician",
+        degree: "MBBS",
+        experience: "7 Years",
+        about: "Dr. Richa James has a strong commitment to delivering comprehensive medical care.",
+        fees: 50,
+        address: {
+            line1: "17th Cross, Richmond",
+            line2: "Circle, Ring Road, London",
+        },
+    },
     // {
     //     _id: "doc9",
     //     name: "Dr. William Harris",

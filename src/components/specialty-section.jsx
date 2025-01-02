@@ -7,6 +7,7 @@ import {
     Bone,
     PillIcon as Pills,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const specialties = [
     { icon: Stethoscope, label: "General physician" },
@@ -18,6 +19,7 @@ const specialties = [
 ];
 
 export function SpecialtySection() {
+    const navigate = useNavigate();
     return (
         <section className="py-16">
             <div className="container">
@@ -31,7 +33,10 @@ export function SpecialtySection() {
                 <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
                     {specialties.map((specialty, index) => (
                         <Card key={index} className="border-none shadow-none">
-                            <CardContent className="flex flex-col items-center p-4">
+                            <CardContent
+                                className="flex flex-col items-center p-4"
+                                onClick={() => navigate(`doctors/${specialty.label}`)}
+                            >
                                 <div className="h-16 w-16 rounded-full bg-[#6366F1]/10 flex items-center justify-center mb-2">
                                     <specialty.icon className="h-8 w-8 text-[#6366F1]" />
                                 </div>

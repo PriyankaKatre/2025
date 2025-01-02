@@ -1,8 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import { DoctorCard } from "./Doctor-card";
 import { Button } from "./ui/button";
-import { doctors } from "@/data/doctors";
+import { doctors } from "@/data/doctorsData";
 
 export function DoctorsSection() {
+    const navigate = useNavigate();
     return (
         <section className="py-16 bg-gray-50">
             <div className="container">
@@ -17,12 +19,14 @@ export function DoctorsSection() {
                         <DoctorCard key={index} {...doctor} />
                     ))}
                 </div>
-                <Button
-                    className="bg-blue-50 text-gray-600 px-12 py-3 rounded-full mt-10"
-                    onClick="navigate('/doctors')"
-                >
-                    More
-                </Button>
+                <div className="flex justify-center">
+                    <Button
+                        className="bg-teal-600  hover:bg-teal-600 px-12 py-3 rounded-full mt-10"
+                        onClick={() => navigate("/doctors")}
+                    >
+                        More
+                    </Button>
+                </div>
             </div>
         </section>
     );
