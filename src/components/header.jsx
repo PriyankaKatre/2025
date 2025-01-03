@@ -58,7 +58,11 @@ export function Header() {
                     >
                         Admin Panel
                     </Link>
-                    <Button size="lg" className="bg-teal-600 hover:bg-teal-500">
+                    <Button
+                        size="lg"
+                        className="bg-teal-600 hover:bg-teal-500"
+                        onClick={() => navigate("/login")}
+                    >
                         Create account
                     </Button>
                     <DropdownMenu>
