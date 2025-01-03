@@ -19,7 +19,7 @@ export function HeroSection() {
                         <Button
                             size="lg"
                             variant="secondary"
-                            className="bg-gray-100 hover:bg-gray-100"
+                            className="bg-gray-100 hover:bg-gray-200"
                         >
                             Book appointment →
                         </Button>

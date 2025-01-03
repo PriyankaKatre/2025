@@ -1,6 +1,10 @@
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
+import { doctors } from "@/data/doctorsData";
+import { DoctorCard } from "./Doctor-card";
+import { DoctorsSection } from "./Doctors-section";
+import RevelentDoctors from "./revelentDoctors";
 
 const days = [
     { day: "MON", date: "10", isActive: true },
@@ -42,7 +46,7 @@ export function BookingCalendar({ doctorInfo }) {
 
             let endTime = new Date();
             endTime.setDate(today.getDate() + i);
-            endTime.setHours(21, 0, 0, 0);
+            endTime.setHours(22, 0, 0, 0);
 
             // setting hours
 
@@ -76,108 +80,67 @@ export function BookingCalendar({ doctorInfo }) {
         getAvailableSlots();
     }, [doctorInfo]);
 
-    useEffect(() => {
-        console.log("docSlots", docSlots);
-    }, [doctorInfo]);
+    console.log("doctorInfo", doctorInfo);
 
     return (
         <div className="space-y-6">
             <h2 className="text-lg font-medium">Booking slots</h2>
-            {/* <div className="flex gap-2 overflow-x-auto pb-2">
-                {days.map(({ day, date, isActive }) => (
-                    <button
-                        key={day}
-                        className={cn(
-                            "flex min-w-[4rem] flex-col items-center rounded-lg px-4 py-2 text-sm transition-colors",
-                            isActive
-                                ? "bg-blue-500 text-white"
-                                : "hover:bg-gray-100"
-                        )}
-                    >
-                        <span className="font-medium">{day}</span>
-                        <span>{date}</span>
-                    </button>
-                ))}
-            </div> */}
             <div className="flex flex-wrap gap-2">
-                {/* {timeSlots.map(({ time, isActive }) => (
-                    <button
-                        key={time}
-                        className={cn(
-                            "rounded-full px-4 py-1 text-sm transition-colors",
-                            isActive
-                                ? "bg-blue-500 text-white"
-                                : "border hover:bg-gray-100"
-                        )}
-                    >
-                        {time}
-                    </button>
-                ))} */}
-
                 {docSlots.length &&
                     docSlots.map((item, index) => (
-                        <>
-                            <div>
-                                <button
-                                    key={index}
-                                    onClick={() => setSlotIndex(index)}
-                                    className={cn(
-                                        "flex min-w-[4rem] flex-col items-center rounded-lg px-4 py-2 text-sm transition-colors",
-                                        slotIndex === index ? "bg-teal-600" : ""
-                                    )}
-                                >
-                                    <p>
-                                        {item[0] &&
-                                            daysOfWeek[
-                                                item[0].dateTime.getDay()
-                                            ]}
-                                    </p>
-                                    <p>
-                                        {item[0] && item[0].dateTime.getDate()}
-                                    </p>
-                                </button>
-                            </div>
-                        </>
+                        <Button
+                            key={index}
+                            onClick={() => setSlotIndex(index)}
+                            className={cn(
+                                "flex min-w-[4rem] flex-col items-center rounded-lg px-4 py-2 text-sm transition-colors border-2",
+                                slotIndex === index
+                                    ? "bg-teal-600 hover:bg-teal-500 text-white"
+                                    : ""
+                            )}
+                        >
+                            <p>
+                                {item[0] &&
+                                    daysOfWeek[item[0].dateTime.getDay()]}
+                            </p>
+                            <p>{item[0] && item[0].dateTime.getDate()}</p>
+                        </Button>
                     ))}
-
-                {/* <div className="overflow-x-auto scrollbar-hide px-8">
-                    <div className="flex min-w-max gap-4 py-2">
-                        {docSlots.length &&
-                            docSlots[slotIndex].map((time, index) => (
-                                <button
-                                    key={time}
-                                    className="rounded-full border px-4 py-1 text-sm hover:bg-gray-100"
+            </div>
+            <div className="overflow-x-auto pb-5">
+                <div className="flex min-w-max gap-4 ">
+                    {docSlots.length &&
+                        docSlots[slotIndex].map((item, index) => {
+                            return (
+                                <Button
+                                    key={index}
+                                    className={cn(
+                                        "rounded-full px-4 py-1 text-sm transition-colors border-2",
+                                        slotTime === item.time
+                                            ? "bg-teal-600 hover:bg-teal-500 text-white"
+                                            : ""
+                                    )}
+                                    onClick={() => setSlotTime(item.time)}
                                 >
-                                    {time}
-                                </button>
-                            ))}
-                    </div>
-                </div> */}
-                <div className="overflow-x-auto scrollbar-hide px-8">
-                    <div className="flex min-w-max gap-4 py-2">
-                        {console.log(
-                            "docSlots[slotIndex]",
-                            docSlots[slotIndex]
-                        )}
-                        {docSlots.length &&
-                            docSlots[slotIndex].map((item, index) => {
-                                return (
-                                    <button
-                                        key={index}
-                                        className={cn(
-                                            "rounded-full px-4 py-1 text-sm transition-colors "
-                                        )}
-                                    >
-                                        {item.time.toLowerCase()}
-                                    </button>
-                                );
-                            })}
-                    </div>
+                                    {item.time.toLowerCase()}
+                                </Button>
+                            );
+                        })}
                 </div>
             </div>
-            <Button className="w-full bg-blue-500 hover:bg-blue-600">
+            <Button className=" bg-teal-600 hover:bg-teal-500">
                 Book an appointment
             </Button>
+            <div className="mt-20">
+                <h2 className="text-2xl font-bold text-center mb-4 mt-20">
+                    Relevant Specialists
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <RevelentDoctors
+                        docId={doctorInfo._id}
+                        speciality={doctorInfo.speciality}
+                    />
+                </div>
+            </div>
         </div>
     );
 }

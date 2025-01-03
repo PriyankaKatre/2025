@@ -58,7 +58,7 @@ export function Header() {
                     >
                         Admin Panel
                     </Link>
-                    <Button size="lg" className="bg-teal-600 hover:bg-teal-600">
+                    <Button size="lg" className="bg-teal-600 hover:bg-teal-500">
                         Create account
                     </Button>
                     <DropdownMenu>
