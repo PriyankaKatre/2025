@@ -92,7 +92,7 @@ export function BookingCalendar({ doctorInfo }) {
                             key={index}
                             onClick={() => setSlotIndex(index)}
                             className={cn(
-                                "flex min-w-[4rem] flex-col items-center rounded-lg px-4 py-2 text-sm transition-colors border-2",
+                                "flex min-w-[4rem] min-h-[4rem] flex-col items-center rounded-lg px-4 py-2 text-sm transition-colors border-2 bg-transparent text-black hover:bg-transparent",
                                 slotIndex === index
                                     ? "bg-teal-600 hover:bg-teal-500 text-white"
                                     : ""
@@ -114,7 +114,7 @@ export function BookingCalendar({ doctorInfo }) {
                                 <Button
                                     key={index}
                                     className={cn(
-                                        "rounded-full px-4 py-1 text-sm transition-colors border-2",
+                                        "rounded-full px-4 py-1 text-sm transition-colors border-2 bg-transparent text-black hover:bg-transparent",
                                         slotTime === item.time
                                             ? "bg-teal-600 hover:bg-teal-500 text-white"
                                             : ""

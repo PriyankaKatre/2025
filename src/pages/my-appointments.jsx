@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { doctors } from "@/data/doctorsData";
 
 const appointments = [
     {
@@ -55,7 +56,7 @@ const MyAppointments = () => {
         <div className="container mx-auto p-4 space-y-6">
             <h1 className="text-xl font-semibold">My Appointments</h1>
             <div className="space-y-4">
-                {appointments.map((appointment) => (
+                {doctors.map((appointment) => (
                     <AppointmentCard
                         key={appointment.id}
                         appointment={appointment}
@@ -74,17 +75,17 @@ const AppointmentCard = ({ appointment }) => {
                     <div className="flex gap-4">
                         <Avatar className="w-16 h-16">
                             <AvatarImage
-                                src={appointment.doctor.image}
-                                alt={appointment.doctor.name}
+                                src={appointment.image}
+                                alt={appointment.name}
                             />
                             <AvatarFallback>DR</AvatarFallback>
                         </Avatar>
                         <div className="space-y-1">
                             <h2 className="font-semibold">
-                                {appointment.doctor.name}
+                                {appointment.name}
                             </h2>
                             <p className="text-sm text-muted-foreground">
-                                {appointment.doctor.title}
+                                {appointment.title}
                             </p>
                             <div className="text-sm text-muted-foreground">
                                 <p className="font-medium">Address:</p>
@@ -97,7 +98,7 @@ const AppointmentCard = ({ appointment }) => {
                             <p className="text-sm text-muted-foreground">
                                 <span className="font-medium">
                                     Date & Time:
-                                </span>{" "}
+                                </span>
                                 {appointment.dateTime}
                             </p>
                         </div>

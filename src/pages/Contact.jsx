@@ -38,10 +38,10 @@ export default function Contact() {
                                     <MapPin className="w-5 h-5 mt-1 text-muted-foreground" />
                                     <div>
                                         <p className="text-muted-foreground">
-                                            56709 Wilma Station
+                                            Harrow
                                         </p>
                                         <p className="text-muted-foreground">
-                                            Suite 390, Washington, USA
+                                            London
                                         </p>
                                     </div>
                                 </div>
@@ -49,14 +49,14 @@ export default function Contact() {
                                 <div className="flex items-center space-x-3">
                                     <Phone className="w-5 h-5 text-muted-foreground" />
                                     <p className="text-muted-foreground">
-                                        Tel: (435) 555-0132
+                                        Tel: 123456789
                                     </p>
                                 </div>
 
                                 <div className="flex items-center space-x-3">
                                     <Mail className="w-5 h-5 text-muted-foreground" />
                                     <p className="text-muted-foreground">
-                                        Email: greaterhealthcare@gmail.com
+                                        Email: pk01@gmail.com
                                     </p>
                                 </div>
                             </div>
@@ -67,7 +67,7 @@ export default function Contact() {
                     <Card className="border-none shadow-none">
                         <CardContent className="p-0 space-y-4">
                             <h2 className="text-xl font-semibold">
-                                CAREERS AT PRESCRIPTO
+                                CAREERS AT EasyDoc
                             </h2>
                             <p className="text-muted-foreground">
                                 Learn more about our teams and job openings.

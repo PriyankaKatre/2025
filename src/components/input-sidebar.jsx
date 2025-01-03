@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 export const FilterSidebar = ({ speciality }) => {
     const navigate = useNavigate();
     return (
-        <div className="w-48 space-y-2 cursor-pointer">
+        <div className="w-full md:w-48 space-y-2 cursor-pointer">
             <p
                 onClick={() => {
                     return speciality === "General physician"
