@@ -7,7 +7,10 @@ export function DoctorCard({ _id, name, speciality, image, available = true }) {
     return (
         <Card
             className="overflow-hidden"
-            onClick={() => navigate(`/appointments/${_id}`)}
+            onClick={() => {
+                window.scrollTo(0, 0);
+                navigate(`/appointments/${_id}`);
+            }}
         >
             <CardContent className="p-0">
                 <img

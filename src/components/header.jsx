@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import logo from "../assets/logo.svg";
 import {
@@ -21,16 +21,17 @@ const navigation = [
 export function Header() {
     const location = useLocation();
     const [activeLink, setActiveLink] = useState(location.pathname);
-    console.log("active", activeLink);
+    const navigate = useNavigate();
     return (
         <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-            <div className="container flex h-20 items-center pb-10">
+            <div className="container flex h-20 items-center mb-3">
                 <div className="flex items-center space-x-2">
                     <img
                         src={logo}
                         alt="DocApp Logo"
                         width="100"
                         height="100"
+                        onClick={() => navigate("/")}
                     />
                 </div>
                 <nav className="flex flex-1 items-center justify-center space-x-8">

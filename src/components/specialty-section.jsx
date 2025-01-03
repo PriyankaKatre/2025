@@ -35,7 +35,10 @@ export function SpecialtySection() {
                         <Card key={index} className="border-none shadow-none">
                             <CardContent
                                 className="flex flex-col items-center p-4"
-                                onClick={() => navigate(`doctors/${specialty.label}`)}
+                                onClick={() => {
+                                    window.scrollTo(0, 0),
+                                        navigate(`doctors/${specialty.label}`);
+                                }}
                             >
                                 <div className="h-16 w-16 rounded-full bg-[#6366F1]/10 flex items-center justify-center mb-2">
                                     <specialty.icon className="h-8 w-8 text-[#6366F1]" />

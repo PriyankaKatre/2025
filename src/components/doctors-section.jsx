@@ -22,7 +22,7 @@ export function DoctorsSection() {
                 <div className="flex justify-center">
                     <Button
                         className="bg-teal-600  hover:bg-teal-600 px-12 py-3 rounded-full mt-10"
-                        onClick={() => navigate("/doctors")}
+                        onClick={() => {scrollTo(0, 0), navigate("/doctors");} }
                     >
                         More
                     </Button>
