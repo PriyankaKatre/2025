@@ -3,6 +3,7 @@ import validator from "validator";
 import bcrypt from "bcrypt";
 import { uploadMedia } from "../config/cloudinary.js";
 import doctorModel from "./../models/doctorModel.js";
+import jwt from "jsonwebtoken";
 
 const addDoctor = async (req, res) => {
   try {
@@ -19,8 +20,6 @@ const addDoctor = async (req, res) => {
       address,
     } = req.body;
     const profilePhoto = req.file;
-
-    console.log("profilePhoto", profilePhoto);
 
     if (
       !name ||
@@ -53,7 +52,6 @@ const addDoctor = async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    console.log(address); // Log the address string
 
     // Ensure the address string is valid JSON
     const parsedAddress = JSON.parse(address);
@@ -61,8 +59,6 @@ const addDoctor = async (req, res) => {
     // Upload profilePhoto to cloudinary
     const cloudResponse = await uploadMedia(profilePhoto.path);
     const photoUrl = cloudResponse.secure_url;
-
-    console.log("cloudResponse", photoUrl);
 
     const doctorData = {
       name,
@@ -88,10 +84,34 @@ const addDoctor = async (req, res) => {
     console.log("failed Register", err);
     return res.status(400).json({
       success: false,
-      message: "Failed to register",
+      message: err.message,
     });
   }
 };
 
-export default addDoctor;
+const adminLogin = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    if (
+      email === process.env.ADMIN_EMAIL &&
+      password === process.env.ADMIN_PASSWORD
+    ) {
+      const token = jwt.sign(email + password, process.env.JWT_SECRATEKEY);
+      return res.status(200).json({ success: true, token });
+    } else {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid Credentials",
+      });
+    }
+  } catch (err) {
+    console.log(err);
+    return res.status(400).json({
+      success: false,
+      message: "Failed to admin login",
+    });
+  }
+};
+
+export { addDoctor, adminLogin };
 
