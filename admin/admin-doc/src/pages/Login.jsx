@@ -2,13 +2,14 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import axios from "axios";
+import { AdminContext } from "@/context/AdminContext";
+import { toast } from "sonner";
 
 export default function Login() {
   const [state, setState] = useState("Admin");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { setatoken, backendUrl } = useContext(AdminContext);
 
   const [user, setUser] = useState({
     email: "",
@@ -20,11 +21,35 @@ export default function Login() {
     setUser((prev) => ({ ...prev, [name]: value }));
   };
 
-  console.log("user", user);
-
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
+    const { email, password } = user;
     e.preventDefault();
+    try {
+      if (state === "Admin") {
+        const { data } = await axios.post(`${backendUrl}/api/admin/login`, {
+          email,
+          password,
+        });
+        if (data.success) {
+          localStorage.setItem("atoken", data.token);
+          setatoken(data.token);
+        } else {
+          toast.error(data.message || "Login failed.");
+        }
+      } else {
+          //
+      }
+    } catch (err) {
+      if (err.response && err.response.data && err.response.data.message) {
+        toast.error(
+          err.response.data.message || "An error occurred during login."
+        );
+      } else {
+        toast.error(err.message || "An error occurred during login.");
+      }
+    }
   };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
       <Card className="w-full max-w-[400px]">
@@ -36,15 +61,15 @@ export default function Login() {
           </p>
         </CardHeader>
         <CardContent>
-          <form className="space-y-4">
+          <form className="space-y-4" onSubmit={submitHandler}>
             <div className="space-y-2">
-              <Label htmlFor="name">Email</Label>
+              <Label htmlFor="email">Email</Label>
               <Input
-                id="name"
-                type="name"
-                placeholder="Name"
-                name="name"
-                value={user.name}
+                id="email"
+                type="email"
+                placeholder="Email"
+                name="email"
+                value={user.email}
                 required
                 onChange={(e) => onInputChangeHandler(e)}
               />
