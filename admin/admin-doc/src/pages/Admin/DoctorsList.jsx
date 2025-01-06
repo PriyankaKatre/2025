@@ -1,3 +1,4 @@
+import Toast from "@/components/Toast";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -10,6 +11,8 @@ const DoctorsList = () => {
   const [loading, setLoading] = useState(false);
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const { atoken } = useContext(AdminContext);
+  const [toast, setToast] = useState({ type: "", message: "" });
+
   const getAllDoctorsList = async () => {
     setLoading(true);
     try {
@@ -26,6 +29,34 @@ const DoctorsList = () => {
       setLoading(false);
     }
   };
+
+  const changeDoctorsAvailability = async (docId) => {
+    setLoading(true);
+    try {
+      const { data } = await axios.post(
+        `${backendUrl}/api/admin/chanage-availability`,
+        { docId },
+        {
+          headers: {
+            atoken,
+          },
+        }
+      );
+      if (data.success) {
+        setToast({
+          type: data?.success ? "success" : "error",
+          message: data?.message,
+        });
+        getAllDoctorsList();
+      }
+      console.log("data availability", data);
+      console.log("data.DoctorsList", data.doctors);
+    } catch (err) {
+      console.log("error while fetching all the doctors data");
+    } finally {
+      setLoading(false);
+    }
+  };
   useEffect(() => {
     getAllDoctorsList();
   }, []);
@@ -34,16 +65,12 @@ const DoctorsList = () => {
   }
   return (
     <div className="p-4">
+      {toast.message && <Toast type={toast.type} message={toast.message} />}
       <h1 className="text-2xl font-bold mb-6">All Doctors</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {doctorsList.length > 0 &&
           doctorsList.map((doctor, index) => (
-            <Card
-              key={doctor.name}
-              className={`overflow-hidden ${
-                index === 0 ? "bg-[#6366f1]" : "bg-background"
-              }`}
-            >
+            <Card key={doctor.name} className={"overflow-hidden"}>
               <CardContent className="p-0">
                 <div className="aspect-square relative">
                   <img
@@ -69,6 +96,7 @@ const DoctorsList = () => {
                   </p>
                   <div className="mt-2 flex items-center justify-between">
                     <Input
+                      onChange={() => changeDoctorsAvailability(doctor._id)}
                       type="checkbox"
                       checked={doctor.available}
                       className="p-0 w-4"
