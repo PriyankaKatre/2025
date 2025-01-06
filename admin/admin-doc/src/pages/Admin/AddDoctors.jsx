@@ -31,11 +31,10 @@ export default function AddDoctors() {
     address2: "",
     about: "",
   });
-
-  const [toast, setToast] = useState({ type: "", message: "" });
   const [avatarUrl, setAvatarUrl] = useState("");
   const [avatarFile, setAvatarFile] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [toast, setToast] = useState({ type: "", message: "" });
 
   const handleImageUpload = (e) => {
     const file = e.target.files?.[0];
@@ -81,6 +80,22 @@ export default function AddDoctors() {
           },
         }
       );
+      if (response?.data.success) {
+        setDoctor({
+          name: "",
+          speciality: "",
+          email: "",
+          degree: "",
+          password: "",
+          experience: "",
+          fees: "",
+          address1: "",
+          address2: "",
+          about: "",
+        });
+        setAvatarUrl("");
+        setAvatarFile(null);
+      }
       if (response?.data) {
         setToast({
           type: response?.data?.success ? "success" : "error",
@@ -105,14 +120,14 @@ export default function AddDoctors() {
       <h1 className="text-2xl font-semibold mb-6">Add Doctor</h1>
 
       <form className="space-y-6" onSubmit={handleSubmit}>
-        <div className="flex items-center gap-4">
+        <div
+          className="flex items-center gap-4 cursor-pointer"
+          onClick={() => document.getElementById("picture")?.click()}
+        >
           <Avatar className="w-24 h-24">
             <AvatarImage src={avatarUrl} />
             <AvatarFallback>
-              <Upload
-                className="w-8 h-8 text-muted-foreground"
-                onClick={() => document.getElementById("picture")?.click()}
-              />
+              <Upload className="w-8 h-8 text-muted-foreground" />
             </AvatarFallback>
           </Avatar>
           <div>
