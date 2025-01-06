@@ -1,6 +1,7 @@
 import userModel from "../models/userModel.js";
 import validator from "validator";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 const registerUser = async (req, res) => {
   try {
@@ -39,11 +40,13 @@ const registerUser = async (req, res) => {
       password: hasedPassword,
     };
 
-    await userModel.create(userData);
-
+    const user = await userModel.create(userData);
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRATEKEY);
+    console.log("token", token);
     return res.status(201).json({
       success: true,
       message: "User Register Successfully",
+      token,
     });
   } catch (err) {
     return res.status(400).json({
@@ -53,4 +56,39 @@ const registerUser = async (req, res) => {
   }
 };
 
-export { registerUser };
+const loginUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    console.log("email", email);
+    const user = await userModel.findOne({ email });
+    if (!user) {
+      return res.status(400).json({
+        success: false,
+        message: "User does not exists",
+      });
+    }
+    const isMatch = await bcrypt.compare(password, user.password);
+    console.log("isMatch", isMatch);
+    if (isMatch) {
+      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRATEKEY);
+      console.log("token", token);
+      return res.status(200).json({
+        success: true,
+        message: "User Logged in Successfully",
+        token,
+      });
+    } else {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid User Credentials",
+      });
+    }
+  } catch (err) {
+    return res.status(400).json({
+      success: false,
+      message: "Failed to Login User",
+    });
+  }
+};
+
+export { registerUser, loginUser };
