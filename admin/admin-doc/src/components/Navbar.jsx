@@ -16,7 +16,7 @@ const Nabar = () => {
   };
 
   return (
-    <nav className="border-b">
+    <nav className="border-b pb-5">
       <div className="flex h-16 items-center px-4 container mx-auto">
         <div className="flex items-center gap-2">
           <div className="flex items-center space-x-2">

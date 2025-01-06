@@ -20,7 +20,6 @@ const addDoctor = async (req, res) => {
       address,
     } = req.body;
     const profilePhoto = req.file;
-
     if (
       !name ||
       !email ||
@@ -30,24 +29,31 @@ const addDoctor = async (req, res) => {
       !experience ||
       !about ||
       !fees ||
-      !address ||
-      !available
+      !address
     ) {
-      return res.json({
-        status: false,
+      return res.status(400).json({
+        success: false,
         message: "Missing Details",
       });
     }
     if (!validator.isEmail(email)) {
       return res.json({
-        status: false,
+        success: false,
         message: "Please enter a valid email",
       });
     }
     if (password.length < 8) {
       return res.json({
-        status: false,
+        success: false,
         message: "Please enter a strong password",
+      });
+    }
+    const isDoctorExists = await doctorModel.findOne({ email });
+
+    if (isDoctorExists) {
+      return res.json({
+        success: false,
+        message: "Email should be unique",
       });
     }
 
@@ -84,7 +90,8 @@ const addDoctor = async (req, res) => {
     console.log("failed Register", err);
     return res.status(400).json({
       success: false,
-      message: err.message,
+      message:
+        "Please enter all the details currectly,(Email should be unique)",
     });
   }
 };
@@ -92,6 +99,8 @@ const addDoctor = async (req, res) => {
 const adminLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
+
+    console.log("email password", email, password);
     if (
       email === process.env.ADMIN_EMAIL &&
       password === process.env.ADMIN_PASSWORD
@@ -99,9 +108,10 @@ const adminLogin = async (req, res) => {
       const token = jwt.sign(email + password, process.env.JWT_SECRATEKEY);
       return res.status(200).json({ success: true, token });
     } else {
+      console.log("Invalid Credentials");
       return res.status(400).json({
         success: false,
-        message: "Invalid Credentials",
+        message: "Invalid Credentials from server",
       });
     }
   } catch (err) {

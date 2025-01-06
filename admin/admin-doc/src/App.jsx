@@ -4,6 +4,7 @@ import Dashboard from "./pages/Admin/Dashboard";
 import AllAppointments from "./pages/Admin/AllAppointments";
 import addDoctors from "./pages/Admin/AddDoctors";
 import DoctorsList from "./pages/Admin/DoctorsList";
+import AddDoctors from "./pages/Admin/AddDoctors";
 
 function App() {
   const appRouter = createBrowserRouter([
@@ -13,7 +14,7 @@ function App() {
       children: [
         { path: "/admin-dashboard", element: <Dashboard /> },
         { path: "/all-appointments", element: <AllAppointments /> },
-        { path: "/add-doctors", element: <addDoctors /> },
+        { path: "/add-doctors", element: <AddDoctors /> },
         { path: "/doctors-list", element: <DoctorsList /> },
       ],
     },

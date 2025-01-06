@@ -64,3 +64,5 @@
     @apply bg-background text-foreground;
   }
 }
+
+.toast-custom .toast { background-color: green !important; color: white !important; }
