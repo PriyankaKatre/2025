@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { doctors } from "@/data/doctorsData";
+import React, { useContext, useEffect, useState } from "react";
 import { DoctorCard } from "./Doctor-card";
+import { AppContext } from "@/context/appContext";
 
 const RevelentDoctors = ({ speciality, docId }) => {
+    const { doctors } = useContext(AppContext);
     const [doc, setDoc] = useState(doctors);
 
     useEffect(() => {
@@ -15,8 +16,9 @@ const RevelentDoctors = ({ speciality, docId }) => {
             );
         }
     }, [docId, speciality, doctors]);
-
-    console.log("docId", docId, speciality, doc);
+    if (doc.length <= 0) {
+        return <div>No relevent doctor found</div>;
+    }
     return (
         <>
             {doc.slice(0, 5).map((d, idx) => {

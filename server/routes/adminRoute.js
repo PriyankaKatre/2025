@@ -7,7 +7,8 @@ import {
 
 import upload from "../middlerwares/multer.js";
 import authAdmin from "./../middlerwares/authAdmin.js";
-import chnageDoctorsAvailability from '../controllers/doctorController.js';
+import { chnageDoctorsAvailability } from '../controllers/doctorController.js';
+
 
 const adminRouter = express.Router();
 

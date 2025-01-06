@@ -1,13 +1,13 @@
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle } from "lucide-react";
 import { useParams } from "react-router-dom";
-import { doctors } from "@/data/doctorsData";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BookingCalendar } from "./booking-calander";
+import { AppContext } from "@/context/appContext";
 
 export function DoctorProfile() {
+    const { doctors } = useContext(AppContext);
     let [doctorInfo, setDoctorInfo] = useState({});
     let { docId } = useParams();
     const filterDoc = () => {
@@ -19,7 +19,7 @@ export function DoctorProfile() {
     };
     useEffect(() => {
         filterDoc();
-    }, [docId]);
+    }, [docId, doctors]);
 
     return (
         doctorInfo && (

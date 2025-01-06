@@ -1,3 +1,6 @@
 import express from 'express';
+import { getDoctorsList } from "../controllers/doctorController.js";
 
-const route = express.Router()
+export const doctorRouter = express.Router();
+
+doctorRouter.get("/list", getDoctorsList);

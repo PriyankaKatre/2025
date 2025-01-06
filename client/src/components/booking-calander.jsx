@@ -1,31 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
-import { doctors } from "@/data/doctorsData";
-import { DoctorCard } from "./Doctor-card";
-import { DoctorsSection } from "./Doctors-section";
 import RevelentDoctors from "./revelentDoctors";
-
-const days = [
-    { day: "MON", date: "10", isActive: true },
-    { day: "TUE", date: "11" },
-    { day: "WED", date: "12" },
-    { day: "THU", date: "13" },
-    { day: "FRI", date: "14" },
-    { day: "SAT", date: "15" },
-    { day: "SUN", date: "16" },
-];
-
-const timeSlots = [
-    { time: "8:00 am" },
-    { time: "8:30 am" },
-    { time: "9:00 am", isActive: true },
-    { time: "9:30 am" },
-    { time: "10:00 am" },
-    { time: "10:30 am" },
-    { time: "11:00 am" },
-    { time: "11:30 am" },
-];
 
 export function BookingCalendar({ doctorInfo }) {
     const daysOfWeek = ["Sun", "MON", "TUE", "WED", "THU", "FRI", "SAT"];

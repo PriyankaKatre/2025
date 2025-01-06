@@ -42,15 +42,14 @@ const DoctorsList = () => {
           },
         }
       );
-      if (data.success) {
-        setToast({
-          type: data?.success ? "success" : "error",
-          message: data?.message,
-        });
-        getAllDoctorsList();
-      }
-      console.log("data availability", data);
-      console.log("data.DoctorsList", data.doctors);
+        if (data.success) {
+          setToast({
+            type: data?.success ? "success" : "error",
+            message: data?.message,
+          });
+          getAllDoctorsList();
+        }
+
     } catch (err) {
       console.log("error while fetching all the doctors data");
     } finally {
@@ -80,13 +79,7 @@ const DoctorsList = () => {
                   />
                 </div>
                 <div className="p-4">
-                  <h2
-                    className={`font-semibold text-lg ${
-                      index === 0 ? "text-white" : "text-foreground"
-                    }`}
-                  >
-                    {doctor.name}
-                  </h2>
+                  <h2 className={`font-semibold text-lg `}>{doctor.name}</h2>
                   <p
                     className={`text-sm ${
                       index === 0 ? "text-white/90" : "text-muted-foreground"

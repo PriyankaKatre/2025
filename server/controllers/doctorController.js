@@ -20,4 +20,22 @@ const chnageDoctorsAvailability = async (req, res) => {
   }
 };
 
-export default chnageDoctorsAvailability;
+const getDoctorsList = async (req, res) => {
+  try {
+    const doctorsList = await doctorModel.find({}).select(['-password', '-email']);
+    console.log("doctorsList", doctorsList);
+
+    return res.status(200).json({
+      success: true,
+      message: "All doctors list has been fetched successfully",
+      doctors: doctorsList,
+    });
+  } catch (err) {
+    return res.status(400).json({
+      success: false,
+      message: "Failed to fetch all the doctors",
+    });
+  }
+};
+
+export { chnageDoctorsAvailability, getDoctorsList };

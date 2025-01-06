@@ -1,22 +1,23 @@
 import { useNavigate } from "react-router-dom";
 import { DoctorCard } from "./Doctor-card";
 import { Button } from "./ui/button";
-import { doctors } from "@/data/doctorsData";
-import { useEffect, useState } from "react";
+import { useContext, useState } from "react";
+import { AppContext } from "@/context/appContext";
 
 export function DoctorsSection({ docId, speciality }) {
     const navigate = useNavigate();
-    const [doc, setDoc] = useState(doctors);
+    const { doctors } = useContext(AppContext);
+    //const [doc, setDoc] = useState(doctors);
 
-    useEffect(() => {
-        if (docId) {
-            setDoc(
-                doctors.filter((doctor) => doctor.speciality === speciality)
-            );
-        }
-    }, [docId, speciality, doctors]);
+    // useEffect(() => {
+    //     if (docId) {
+    //         return setDoc(
+    //             doctors.filter((doctor) => doctor.speciality === speciality)
+    //         );
+    //     }
+    // }, [docId, speciality]);
 
-    console.log("docId", docId, speciality, doc);
+    //console.log("doctors", doctors, docId, speciality, doc);
 
     return (
         <section className="py-16 bg-gray-50">
@@ -28,7 +29,7 @@ export function DoctorsSection({ docId, speciality }) {
                     Discover our highly recommended medical experts
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {doc.slice(0, 4).map((doctor, index) => (
+                    {doctors.slice(0, 4).map((doctor, index) => (
                         <DoctorCard key={index} {...doctor} />
                     ))}
                 </div>
