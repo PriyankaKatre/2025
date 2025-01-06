@@ -49,7 +49,6 @@ const addDoctor = async (req, res) => {
       });
     }
     const isDoctorExists = await doctorModel.findOne({ email });
-
     if (isDoctorExists) {
       return res.json({
         success: false,
@@ -100,7 +99,6 @@ const adminLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    console.log("email password", email, password);
     if (
       email === process.env.ADMIN_EMAIL &&
       password === process.env.ADMIN_PASSWORD
@@ -123,5 +121,22 @@ const adminLogin = async (req, res) => {
   }
 };
 
-export { addDoctor, adminLogin };
+const getAllDoctors = async (req, res) => {
+  try {
+    const allDoctors = await doctorModel.find({}).select('-password');
+
+    return res.status(200).json({
+      success: true,
+      message: "All doctors data has been fetched successfully",
+      doctors: allDoctors,
+    });
+  } catch (err) {
+    return res.status(400).json({
+      success: false,
+      message: "Failed to fetch all the doctors",
+    });
+  }
+};
+
+export { addDoctor, adminLogin, getAllDoctors };
 
