@@ -87,4 +87,27 @@ const loginUser = async (req, res) => {
   }
 };
 
-export { registerUser, loginUser };
+const getUserProfile = async (req, res) => {
+  try {
+      const { userId } = req.body; // Securely obtained from the token
+
+    const userData = await userModel.findById(userId).select("-password");
+    if (!userData) {
+      return res.status(404).json({
+        success: false,
+        message: "User does not exist",
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      userData,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      message: "Failed to fetch user profile",
+    });
+  }
+};
+
+export { registerUser, loginUser, getUserProfile };

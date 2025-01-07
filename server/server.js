@@ -21,8 +21,4 @@ app.use("/api/admin", adminRouter);
 app.use("/api/doctor", doctorRouter);
 app.use("/api/user", userRouter);
 
-app.get("/", (req, res) => {
-  res.send("api workin");
-});
-
-app.listen(port, () => console.log("server started"));
+app.listen(port, () => console.log(`server started ${port}`));
