@@ -40,8 +40,9 @@ export default function Login() {
 
     const submitHandler = async (e) => {
         e.preventDefault();
-        if (state === "Sign Up") {
-            try {
+       
+        try {
+            if (state === "Sign Up") {
                 const response = await axios.post(
                     `${backendurl}/api/user/register`,
                     user
@@ -51,23 +52,33 @@ export default function Login() {
                     localStorage.setItem("token", response?.data.token);
                     showToast("success", response?.data?.message);
                 }
-            } catch (err) {
-                if (
-                    err.response &&
-                    err.response.data &&
-                    err.response.data.message
-                ) {
-                    showToast(
-                        "error",
-                        err.response.data.message ||
-                            "An error occurred during login."
-                    );
-                } else {
-                    showToast(
-                        "error",
-                        err.message || "An error occurred during login."
-                    );
+            } else {
+                const response = await axios.post(
+                    `${backendurl}/api/user/login`,
+                    { email: user.email, password: user.password }
+                );
+                if (response?.data.success) {
+                    setToken(response?.data.token);
+                    localStorage.setItem("token", response?.data.token);
+                    showToast("success", response?.data?.message);
                 }
+            }
+        } catch (err) {
+            if (
+                err.response &&
+                err.response.data &&
+                err.response.data.message
+            ) {
+                showToast(
+                    "error",
+                    err.response.data.message ||
+                        "An error occurred during login."
+                );
+            } else {
+                showToast(
+                    "error",
+                    err.message || "An error occurred during login."
+                );
             }
         }
     };

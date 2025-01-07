@@ -8,9 +8,10 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
+import { AppContext } from "@/context/appContext";
 
 const navigation = [
     { name: "HOME", href: "/" },
@@ -26,9 +27,22 @@ export function Header() {
     const [isAdmin, setIsAdmin] = useState(true);
     const navigate = useNavigate();
 
+    const { token, setToken } = useContext(AppContext);
+
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
+
+    const logout = () => {
+        setToken("");
+        localStorage.removeItem("token");
+    };
+
+    useEffect(() => {
+        if (token) {
+            navigate("/");
+        }
+    }, [token]);
 
     return (
         <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -67,7 +81,7 @@ export function Header() {
                         Admin Panel
                     </Link>
 
-                    {isAdmin ? (
+                    {token ? (
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                                 <button className="relative h-8 w-8 rounded-full">
@@ -89,9 +103,7 @@ export function Header() {
                                         My Appointments
                                     </Link>
                                 </DropdownMenuItem>
-                                <DropdownMenuItem
-                                    onClick={() => setIsAdmin(false)}
-                                >
+                                <DropdownMenuItem onClick={logout}>
                                     Logout
                                 </DropdownMenuItem>
                             </DropdownMenuContent>
