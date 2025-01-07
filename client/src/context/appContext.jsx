@@ -4,6 +4,7 @@ import { createContext, useEffect, useState } from "react";
 export const AppContext = createContext();
 
 export const AppContextProvider = (props) => {
+    const [token, setToken] = useState("");
     const currencySymbol = "£";
     const backendurl = import.meta.env.VITE_BACKEND_URL;
     const [doctors, setDoctors] = useState([]);
@@ -16,7 +17,6 @@ export const AppContextProvider = (props) => {
             console.log(err);
         }
     };
-    console.log("doctor", doctors);
     useEffect(() => {
         getDoctorsList();
     }, []);
@@ -24,6 +24,9 @@ export const AppContextProvider = (props) => {
     const value = {
         doctors,
         currencySymbol,
+        backendurl,
+        token,
+        setToken,
     };
 
     return (

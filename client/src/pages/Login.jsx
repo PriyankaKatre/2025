@@ -2,12 +2,14 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { AppContext } from "@/context/appContext";
+import axios from "axios";
+import { useContext, useState } from "react";
+import { toast } from "sonner"; // Importing sonner's toast API directly
 
 export default function Login() {
     const [state, setState] = useState("Sign Up");
-
+    const { backendurl, setToken } = useContext(AppContext);
     const [user, setUser] = useState({
         name: "",
         email: "",
@@ -19,11 +21,57 @@ export default function Login() {
         setUser((prev) => ({ ...prev, [name]: value }));
     };
 
-    console.log("user", user);
-
-    const submitHandler = (e) => {
-        e.preventDefault();
+    // Directly control toast behavior
+    const showToast = (type, message) => {
+        if (toast.message !== message) {
+            if (type === "success") {
+                toast.success(message, {
+                    className: "!bg-green-500 !text-white !p-4 !rounded-lg",
+                });
+            } else if (type === "error") {
+                toast.error(message, {
+                    className: "!bg-red-500 !text-white !p-4 !rounded-lg",
+                });
+            } else {
+                toast(message);
+            }
+        }
     };
+
+    const submitHandler = async (e) => {
+        e.preventDefault();
+        if (state === "Sign Up") {
+            try {
+                const response = await axios.post(
+                    `${backendurl}/api/user/register`,
+                    user
+                );
+                if (response?.data.success && response.status === 201) {
+                    setToken(response?.data.token);
+                    localStorage.setItem("token", response?.data.token);
+                    showToast("success", response?.data?.message);
+                }
+            } catch (err) {
+                if (
+                    err.response &&
+                    err.response.data &&
+                    err.response.data.message
+                ) {
+                    showToast(
+                        "error",
+                        err.response.data.message ||
+                            "An error occurred during login."
+                    );
+                } else {
+                    showToast(
+                        "error",
+                        err.message || "An error occurred during login."
+                    );
+                }
+            }
+        }
+    };
+
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
             <Card className="w-full max-w-[400px]">
@@ -38,7 +86,7 @@ export default function Login() {
                     </p>
                 </CardHeader>
                 <CardContent>
-                    <form className="space-y-4">
+                    <form className="space-y-4" onSubmit={submitHandler}>
                         {state === "Sign Up" ? (
                             <div className="space-y-2">
                                 <Label htmlFor="name">Full Name</Label>
@@ -93,7 +141,7 @@ export default function Login() {
                                         className="text-teal-600 font-bold ml-1 cursor-pointer"
                                         onClick={() => setState("Login")}
                                     >
-                                        Sign Up
+                                        Login
                                     </span>
                                 </p>
                             ) : (
@@ -103,7 +151,7 @@ export default function Login() {
                                         className="text-teal-600 font-bold ml-1 cursor-pointer"
                                         onClick={() => setState("Sign Up")}
                                     >
-                                        Login
+                                        Sign Up
                                     </span>
                                 </p>
                             )}

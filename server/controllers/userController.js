@@ -8,9 +8,9 @@ const registerUser = async (req, res) => {
     const { name, email, password } = req.body;
     const isUserExists = await userModel.findOne({ email });
     if (isUserExists) {
-      return res.status(400).json({
+      return res.status(409).json({
         success: false,
-        message: "User with this email address is already register",
+        message: "User with this email address is already registered",
       });
     }
     if (!name || !email || !password) {
@@ -33,7 +33,6 @@ const registerUser = async (req, res) => {
     }
 
     const hasedPassword = await bcrypt.hash(password, 10);
-    console.log("hasedPassword", hasedPassword);
     const userData = {
       name,
       email,
@@ -41,8 +40,8 @@ const registerUser = async (req, res) => {
     };
 
     const user = await userModel.create(userData);
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRATEKEY);
-    console.log("token", token);
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRETKEY);
+
     return res.status(201).json({
       success: true,
       message: "User Register Successfully",
@@ -59,7 +58,6 @@ const registerUser = async (req, res) => {
 const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
-    console.log("email", email);
     const user = await userModel.findOne({ email });
     if (!user) {
       return res.status(400).json({
@@ -68,10 +66,8 @@ const loginUser = async (req, res) => {
       });
     }
     const isMatch = await bcrypt.compare(password, user.password);
-    console.log("isMatch", isMatch);
     if (isMatch) {
-      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRATEKEY);
-      console.log("token", token);
+      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRETKEY);
       return res.status(200).json({
         success: true,
         message: "User Logged in Successfully",

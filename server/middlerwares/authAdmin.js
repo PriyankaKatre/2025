@@ -9,7 +9,7 @@ const authAdmin = async (req, res, next) => {
         message: "Not Authorize Login Again!",
       });
     }
-    const decodeToken = jwt.verify(atoken, process.env.JWT_SECRATEKEY);
+    const decodeToken = jwt.verify(atoken, process.env.JWT_SECRETKEY);
     if (decodeToken !== process.env.ADMIN_EMAIL + process.env.ADMIN_PASSWORD) {
       return res.status(400).json({
         success: false,
