@@ -1,0 +1,23 @@
+<div id="outer" onclick="console.log('Outer DIV (bubbling)')">
+  <div id="inner" onclick="console.log('Inner DIV (bubbling)')">
+    Click Me
+  </div>
+</div>
+
+<script>
+  // Enable capturing for the outer DIV
+  const outerDiv = document.getElementById('outer');
+  outerDiv.addEventListener(
+    'click',
+    () => console.log('Outer DIV (capturing)'),
+    { capture: true }
+  );
+
+  // Enable capturing for the inner DIV
+  const innerDiv = document.getElementById('inner');
+  innerDiv.addEventListener(
+    'click',
+    () => console.log('Inner DIV (capturing)'),
+    { capture: true }
+  );
+</script>

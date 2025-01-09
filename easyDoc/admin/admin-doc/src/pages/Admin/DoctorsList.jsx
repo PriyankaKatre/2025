@@ -42,14 +42,13 @@ const DoctorsList = () => {
           },
         }
       );
-        if (data.success) {
-          setToast({
-            type: data?.success ? "success" : "error",
-            message: data?.message,
-          });
-          getAllDoctorsList();
-        }
-
+      if (data.success) {
+        setToast({
+          type: data?.success ? "success" : "error",
+          message: data?.message,
+        });
+        getAllDoctorsList();
+      }
     } catch (err) {
       console.log("error while fetching all the doctors data");
     } finally {
@@ -76,6 +75,7 @@ const DoctorsList = () => {
                     src={doctor.image}
                     alt={`${doctor.name}'s profile picture`}
                     className="object-contain"
+                    loading="lazy"
                   />
                 </div>
                 <div className="p-4">
