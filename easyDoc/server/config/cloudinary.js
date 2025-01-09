@@ -12,6 +12,14 @@ export const uploadMedia = async (file) => {
   try {
     const uploadResponse = await cloudinary.uploader.upload(file, {
       resource_type: "auto",
+      transformation: [
+        {
+          width: 800, // Set desired width
+          height: 600, // Set desired height
+          crop: "fill", // Ensures image is cropped to fill dimensions
+          gravity: "auto", // Centers the crop dynamically
+        },
+      ],
     });
     return uploadResponse;
   } catch (e) {

@@ -2,6 +2,7 @@ import userModel from "../models/userModel.js";
 import validator from "validator";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { uploadMedia } from "../config/cloudinary.js";
 
 const registerUser = async (req, res) => {
   try {
@@ -110,4 +111,41 @@ const getUserProfile = async (req, res) => {
   }
 };
 
-export { registerUser, loginUser, getUserProfile };
+const updateProfile = async (req, res) => {
+    try {
+        const { userId, name, email, phone, address, dob, gender } = req.body;
+        const image = req.file;
+        if (!name || !phone || !dob || !gender) {
+            return res.status(500).json({
+              success: false,
+              message: "Some Data is missing",
+            });
+        }
+
+        await userModel.findByIdAndUpdate(userId, {
+            name, phone, address: JSON.parse(address), dob, gender
+        })
+
+        if (image) {
+            const cloudResponse = await uploadMedia(image.path);
+            const photoUrl = cloudResponse.secure_url;
+            console.log("photoUrl", photoUrl);
+            await userModel.findByIdAndUpdate(userId, {
+              image:photoUrl,
+            });
+        }
+         return res.status(200).json({
+           success: true,
+           message: "User Profile successfully updated",
+         });
+
+    } catch (err) {
+        return res.status(500).json({
+          success: false,
+          message: "Failed to update user profile",
+        });
+    }
+
+}
+
+export { registerUser, loginUser, getUserProfile, updateProfile };
