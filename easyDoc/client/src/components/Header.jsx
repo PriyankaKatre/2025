@@ -26,6 +26,7 @@ export function Header() {
     const [isOpen, setIsOpen] = useState(false);
     const [isAdmin, setIsAdmin] = useState(true);
     const navigate = useNavigate();
+    const { userData, setUserData } = useContext(AppContext);
 
     const { token, setToken } = useContext(AppContext);
 
@@ -81,16 +82,18 @@ export function Header() {
                         Admin Panel
                     </Link>
 
-                    {token ? (
+                    {token && userData ? (
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                                 <button className="relative h-8 w-8 rounded-full">
                                     <Avatar className="h-8 w-8">
                                         <AvatarImage
-                                            src="/placeholder.svg"
+                                            src={userData.image}
                                             alt="Profile"
                                         />
-                                        <AvatarFallback>U</AvatarFallback>
+                                        <AvatarFallback>
+                                            {userData?.name.slice(0, 2)}
+                                        </AvatarFallback>
                                     </Avatar>
                                 </button>
                             </DropdownMenuTrigger>

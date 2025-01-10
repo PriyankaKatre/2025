@@ -129,7 +129,6 @@ const updateProfile = async (req, res) => {
         if (image) {
             const cloudResponse = await uploadMedia(image.path);
             const photoUrl = cloudResponse.secure_url;
-            console.log("photoUrl", photoUrl);
             await userModel.findByIdAndUpdate(userId, {
               image:photoUrl,
             });

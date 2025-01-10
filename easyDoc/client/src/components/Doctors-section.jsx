@@ -7,6 +7,7 @@ import { AppContext } from "@/context/appContext";
 export function DoctorsSection({ docId, speciality }) {
     const navigate = useNavigate();
     const { doctors } = useContext(AppContext);
+    console.log("doctors", doctors);
     //const [doc, setDoc] = useState(doctors);
 
     // useEffect(() => {

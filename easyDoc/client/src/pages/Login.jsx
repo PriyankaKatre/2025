@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { AppContext } from "@/context/appContext";
+import showToast from "@/utils/toast";
 import axios from "axios";
 import { useContext, useState } from "react";
 import { toast } from "sonner"; // Importing sonner's toast API directly
@@ -19,23 +20,6 @@ export default function Login() {
     const onInputChangeHandler = (e) => {
         let { name, value } = e.target;
         setUser((prev) => ({ ...prev, [name]: value }));
-    };
-
-    // Directly control toast behavior
-    const showToast = (type, message) => {
-        if (toast.message !== message) {
-            if (type === "success") {
-                toast.success(message, {
-                    className: "!bg-green-500 !text-white !p-4 !rounded-lg",
-                });
-            } else if (type === "error") {
-                toast.error(message, {
-                    className: "!bg-red-500 !text-white !p-4 !rounded-lg",
-                });
-            } else {
-                toast(message);
-            }
-        }
     };
 
     const submitHandler = async (e) => {
