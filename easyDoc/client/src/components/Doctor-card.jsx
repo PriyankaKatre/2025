@@ -6,7 +6,7 @@ export function DoctorCard({ _id, name, speciality, image, available = true }) {
     const navigate = useNavigate();
     return (
         <Card
-            className="overflow-hidden"
+            className="overflow-hidden cursor-pointer"
             onClick={() => {
                 window.scrollTo(0, 0);
                 navigate(`/appointments/${_id}`);

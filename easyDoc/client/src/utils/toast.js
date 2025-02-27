@@ -10,6 +10,10 @@ const showToast = (type, message) => {
             toast.error(message, {
                 className: "!bg-red-500 !text-white !p-4 !rounded-lg",
             });
+        } else if (type === "warning") {
+            toast.error(message, {
+                className: "!bg-yellow-500 !text-white !p-4 !rounded-lg",
+            })
         } else {
             toast(message);
         }

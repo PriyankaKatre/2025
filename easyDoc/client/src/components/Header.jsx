@@ -8,7 +8,7 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useContext, useEffect, useState } from "react";
+import { memo, useContext, useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import { AppContext } from "@/context/appContext";
@@ -20,40 +20,48 @@ const navigation = [
     { name: "CONTACT", href: "/contact" },
 ];
 
-export function Header() {
+const Header = () => {
     const location = useLocation();
+
     const [activeLink, setActiveLink] = useState(location.pathname);
     const [isOpen, setIsOpen] = useState(false);
-    const [isAdmin, setIsAdmin] = useState(true);
     const navigate = useNavigate();
-    const { userData, setUserData } = useContext(AppContext);
-
+    const { userData, slotPageLocation } = useContext(AppContext);
     const { token, setToken } = useContext(AppContext);
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
 
+    useEffect(() => {
+        setActiveLink(location.pathname);
+    }, [location.pathname]);
+
     const logout = () => {
         setToken("");
         localStorage.removeItem("token");
+        navigate("/login");
     };
 
     useEffect(() => {
         if (token) {
-            navigate("/");
+            navigate(slotPageLocation || "/");
         }
     }, [token]);
 
+    // useEffect(() => {
+    //     console.log("userData inside use effect", userData);
+    // }, [userData]);
+
     return (
-        <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-            <div className="container flex h-20 items-center mb-3 justify-between">
-                <div className="flex items-center space-x-2">
+        <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 pr-3">
+            <div className="container pt-6 flex h-20 items-center mb-6 justify-between">
+                <div className="flex items-center space-x-2 cursor-pointer">
                     <img
                         src={logo}
                         alt="DocApp Logo"
-                        width="100"
-                        height="100"
+                        width="120"
+                        height="120"
                         onClick={() => navigate("/")}
                     />
                 </div>
@@ -75,18 +83,21 @@ export function Header() {
                     ))}
                 </nav>
                 <div className="flex items-center space-x-4">
-                    <Link
+                    {/* <Link
                         //to="/admin"
                         className="font-medium hover:text-primary hidden md:block"
                     >
                         Admin Panel
-                    </Link>
+                    </Link> */}
 
                     {token && userData ? (
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                                 <button className="relative h-8 w-8 rounded-full">
-                                    <Avatar className="h-8 w-8">
+                                    <Avatar
+                                        className="h-8 w-8"
+                                        key={userData.image}
+                                    >
                                         <AvatarImage
                                             src={userData.image}
                                             alt="Profile"
@@ -102,7 +113,7 @@ export function Header() {
                                     <Link to="/my-profile">My Profile</Link>
                                 </DropdownMenuItem>
                                 <DropdownMenuItem asChild>
-                                    <Link to="/my-appointments">
+                                    <Link to="/appointments/my-appointments">
                                         My Appointments
                                     </Link>
                                 </DropdownMenuItem>
@@ -114,7 +125,7 @@ export function Header() {
                     ) : (
                         <Button
                             size="sm"
-                            className="bg-teal-600 hover:bg-teal-500 hidden md:block"
+                            className="bg-teal-600 hover:bg-teal-500 hidden md:block text-base"
                             onClick={() => navigate("/login")}
                         >
                             Create account
@@ -155,13 +166,13 @@ export function Header() {
                                 {item.name}
                             </Link>
                         ))}
-                        <Link
+                        {/* <Link
                             to="/admin"
                             className="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:text-gray-700"
                             onClick={() => setIsOpen(false)}
                         >
                             Admin Panel
-                        </Link>
+                        </Link> */}
                         <Button
                             size="lg"
                             className="w-full bg-teal-600 hover:bg-teal-500 mt-2"
@@ -178,3 +189,7 @@ export function Header() {
         </header>
     );
 }
+
+
+
+export default memo(Header)

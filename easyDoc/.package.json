@@ -1,0 +1,14 @@
+{
+  "name": "your-project-name",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "npm run start:server",
+    "start:admin": "cd admin && npm start",
+    "start:client": "cd client && npm start",
+    "start:server": "cd server && npm start",
+    "build": "npm run build:admin && npm run build:client && npm run build:server",
+    "build:admin": "cd admin && npm install && npm run build",
+    "build:client": "cd client && npm install && npm run build",
+    "build:server": "cd server && npm install"
+  }
+}

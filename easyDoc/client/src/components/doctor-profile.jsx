@@ -48,7 +48,7 @@ export function DoctorProfile() {
                                             {doctorInfo.speciality}
                                         </span>
                                         <Badge variant="secondary">
-                                            {doctorInfo.experience}
+                                            Exp {doctorInfo.experience} Y
                                         </Badge>
                                     </div>
                                 </div>

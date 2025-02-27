@@ -6,17 +6,19 @@ import { AppContext } from "@/context/appContext";
 import showToast from "@/utils/toast";
 import axios from "axios";
 import { useContext, useState } from "react";
-import { toast } from "sonner"; // Importing sonner's toast API directly
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
     const [state, setState] = useState("Sign Up");
-    const { backendurl, setToken } = useContext(AppContext);
+    const { backendurl, setToken, location } =
+        useContext(AppContext);
+    const navigate = useNavigate();
     const [user, setUser] = useState({
         name: "",
         email: "",
         password: "",
     });
-
+console.log("location", location);
     const onInputChangeHandler = (e) => {
         let { name, value } = e.target;
         setUser((prev) => ({ ...prev, [name]: value }));
@@ -24,7 +26,7 @@ export default function Login() {
 
     const submitHandler = async (e) => {
         e.preventDefault();
-       
+
         try {
             if (state === "Sign Up") {
                 const response = await axios.post(
@@ -44,7 +46,7 @@ export default function Login() {
                 if (response?.data.success) {
                     setToken(response?.data.token);
                     localStorage.setItem("token", response?.data.token);
-                    showToast("success", response?.data?.message);
+                    showToast("success", response?.data?.message);                   
                 }
             }
         } catch (err) {
@@ -75,7 +77,7 @@ export default function Login() {
                         {state === "Sign Up" ? "Create Account" : "Login"}
                     </CardTitle>
                     <p className="text-sm text-muted-foreground">
-                        Please{" "}
+                        Please
                         {state === "Sign Up" ? "Create Account" : "Login"} to
                         book appointment
                     </p>

@@ -16,9 +16,10 @@ import showToast from "@/utils/toast";
 
 
 export default function MyProfile() {
-    const { userData, setUserData, backendurl, token, getUserData } = useContext(AppContext);
+    const { userData, setUserData, backendurl, token, getUserData } =
+        useContext(AppContext);
     const [isEdit, setIsEdit] = useState(false);
-    const [image, setImage] = useState(false);
+    const [image, setImage] = useState('');
     const [loading, setLoading] = useState(false);
       const [originalData, setOriginalData] = useState(userData);
     const [hasChanges, setHasChanges] = useState(false);
@@ -32,7 +33,7 @@ export default function MyProfile() {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        console.log('name', name)
+
         setUserData((prev) => {
             const keys = name.split(".");
             if (keys.length === 1) {
@@ -66,6 +67,7 @@ export default function MyProfile() {
 
             // Append top-level userData keys
             for (const key in userData) {
+                console.log('key in form data', key)
                 if (key === "address" && typeof userData.address === "object") {
                     // Serialize nested address object
                     formData.append(
@@ -75,16 +77,17 @@ export default function MyProfile() {
                 } else if (userData[key] !== undefined) {
                     // Append other keys (ensure no undefined values)
                     formData.append(key, userData[key]);
-                }
+                } 
             }
 
             // Append image file if it exists
             if (image) {
-                formData.append("image", image);
+                console.log('inside image', image)
+                formData.delete("image");
+                formData.append('image', image);
             }
 
             // Debug: Log FormData contents
-            console.log("FormData contents:");
             for (const [key, value] of formData.entries()) {
                 console.log(`${key}: ${value}`);
             }
@@ -93,11 +96,13 @@ export default function MyProfile() {
                 `${backendurl}/api/user/update-profile`,
                 formData,
                 {
-                    headers: { token },
+                    headers: { token, "Content-Type": "multipart/form-data" },
                 }
             );
+            formData && console.log("formData", formData);
             if (data.success) {
                 showToast("success", "User data updated successfully");
+                getUserData()
             }
         } catch (err) {
             showToast("success", "Error updating user profile:", err);
@@ -105,8 +110,7 @@ export default function MyProfile() {
             setLoading(false);
         }
     };
-
-
+            
     return (
         userData && (
             <Card className="max-w-2xl mt-8">
@@ -286,10 +290,10 @@ export default function MyProfile() {
                             <Button
                                 variant="outline"
                                 disabled={!hasChanges}
-                                className={`${
+                                className={`hover:bg-teal-600 !bg-teal-600 text-white hover:text-white${
                                     hasChanges
-                                        ? "hover:bg-teal-600 hover:text-white"
-                                        : "cursor-not-allowed opacity-50"
+                                        ? ""
+                                        : "cursor-not-allowed opacity-50 pointer-events-none"
                                 }`}
                                 onClick={() => updateUserProfileData()}
                             >
@@ -298,7 +302,7 @@ export default function MyProfile() {
                         ) : (
                             <Button
                                 variant="outline"
-                                className="hover:bg-teal-600 hover:text-white"
+                                className="hover:bg-teal-600 bg-teal-600 text-white hover:text-white"
                                 onClick={() => setIsEdit(true)}
                             >
                                 Edit

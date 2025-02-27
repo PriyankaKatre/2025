@@ -169,10 +169,18 @@ export default function AddDoctors() {
                 <SelectValue placeholder="Please select" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="general">General physician</SelectItem>
-                <SelectItem value="cardiology">Cardiology</SelectItem>
-                <SelectItem value="dermatology">Dermatology</SelectItem>
-                <SelectItem value="neurology">Neurology</SelectItem>
+                <SelectItem value="General physician">
+                  General physician
+                </SelectItem>
+                <SelectItem value="Cardiologist">Cardiologist</SelectItem>
+                <SelectItem value="Dermatologist">Dermatologist</SelectItem>
+                <SelectItem value="Pediatrician">Pediatrician</SelectItem>
+                <SelectItem value="Orthopedic Surgeon">
+                  Orthopedic Surgeon
+                </SelectItem>
+                <SelectItem value="Neurologist">Neurologist</SelectItem>
+                <SelectItem value="Endocrinologist">Endocrinologist</SelectItem>
+                <SelectItem value="Gastroenterologist">Gastroenterologist</SelectItem>
               </SelectContent>
             </Select>
           </div>

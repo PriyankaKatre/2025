@@ -2,8 +2,10 @@
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Button } from "./ui/button";
 import doctorsGroup1 from '../assets/doctors-group1.svg'
+import { useNavigate } from "react-router-dom";
 
 export function HeroSection() {
+    const navigate = useNavigate()
     return (
         <div className="relative bg-teal-500 py-24 lg:py-32 mt-5">
             <div className="container grid gap-8 lg:grid-cols-2">
@@ -15,15 +17,16 @@ export function HeroSection() {
                             Leading Healthcare Professionals
                         </h1>
                     </div>
-                    <div>
+                    {/* <div>
                         <Button
                             size="lg"
                             variant="secondary"
                             className="bg-gray-100 hover:bg-gray-200"
+                            onClick={() => navigate('/doctors')}
                         >
                             Book appointment →
                         </Button>
-                    </div>
+                    </div> */}
                 </div>
                 <div className="hidden lg:block absolute bottom-0 right-8">
                     <img

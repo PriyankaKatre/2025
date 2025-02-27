@@ -1,28 +1,12 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import MainLayout from "./layout/mainLayout";
-import Dashboard from "./pages/Admin/Dashboard";
-import AllAppointments from "./pages/Admin/AllAppointments";
-import addDoctors from "./pages/Admin/AddDoctors";
-import DoctorsList from "./pages/Admin/DoctorsList";
-import AddDoctors from "./pages/Admin/AddDoctors";
+import { RouterProvider } from "react-router-dom";
+import routes from './routes'
 
-function App() {
-  const appRouter = createBrowserRouter([
-    {
-      path: "/",
-      element: <MainLayout />,
-      children: [
-        { path: "/admin-dashboard", element: <Dashboard /> },
-        { path: "/all-appointments", element: <AllAppointments /> },
-        { path: "/add-doctors", element: <AddDoctors /> },
-        { path: "/doctors-list", element: <DoctorsList /> },
-      ],
-    },
-  ]);
+
+const App = () => {
 
   return (
     <main>
-      <RouterProvider router={appRouter}></RouterProvider>
+      <RouterProvider router={routes}></RouterProvider>
     </main>
   );
 }

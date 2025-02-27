@@ -123,7 +123,7 @@ const updateProfile = async (req, res) => {
         }
 
         await userModel.findByIdAndUpdate(userId, {
-            name, phone, address: JSON.parse(address), dob, gender
+            name, phone, address: JSON.parse(address), dob, gender, email
         })
 
         if (image) {
@@ -147,4 +147,58 @@ const updateProfile = async (req, res) => {
 
 }
 
-export { registerUser, loginUser, getUserProfile, updateProfile };
+const bookAppointment = async (req, res) => {
+    try {
+        const { userId, docId, slotDate, slotTime } = req.body;
+
+        const docData = await doctorModel.findById(docId).select('-password');
+
+        if (!docData.available) {
+            return res.json({ success: false, message: 'Doctor not available' });
+        }
+
+        let slots_booked = docData.slots_booked;
+
+        // Checking for slot availability
+        if (slots_booked[slotDate]) {
+            if (slots_booked[slotDate].includes(slotTime)) {
+                return res.json({ success: false, message: 'Slot not available' });
+            } else {
+                slots_booked[slotDate].push(slotTime);
+            }
+        } else {
+            slots_booked[slotDate] = [];
+            slots_booked[slotDate].push(slotTime);
+        }
+        const userData = await userModel.findById(userId).select('-password');
+
+        delete docData.slots_booked;
+
+        const appointmentData = {
+            userId,
+            docId,
+            userData,
+            docData,
+            amount: docData.fees,
+            slotTime,
+            slotDate,
+            date: Date.now(),
+        };
+
+        const newAppointment = new appointmentModel(appointmentData);
+        await newAppointment.save();
+
+        await doctorModel.findByIdAndUpdate(docId, { slots_booked });
+        return res.status(200).json({
+            success: true,
+            message: 'Appointment booked successfully',
+        });
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: 'Issue while booking an appointment' });
+    }
+}
+
+
+export { registerUser, loginUser, getUserProfile, updateProfile, bookAppointment };

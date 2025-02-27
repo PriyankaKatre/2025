@@ -1,13 +1,21 @@
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import RevelentDoctors from "./revelentDoctors";
+import { AppContext } from "@/context/appContext";
+import showToast from "@/utils/toast";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export function BookingCalendar({ doctorInfo }) {
+    const location = useLocation();
+    console.log("location", location);
     const daysOfWeek = ["Sun", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
     const [docSlots, setDocSlots] = useState([]);
     const [slotIndex, setSlotIndex] = useState(0);
     const [slotTime, setSlotTime] = useState("");
+    const { doctors, backendurl, token, getDoctorsList, currencySymbol, setLocation } =
+        useContext(AppContext);
+    const navigate = useNavigate()
 
     const getAvailableSlots = async () => {
         setDocSlots([]);
@@ -17,7 +25,6 @@ export function BookingCalendar({ doctorInfo }) {
         for (let i = 0; i < 7; i++) {
             let currentDate = new Date(today);
             currentDate.setDate(today.getDate() + i);
-
             // End Time
 
             let endTime = new Date();
@@ -25,6 +32,8 @@ export function BookingCalendar({ doctorInfo }) {
             endTime.setHours(22, 0, 0, 0);
 
             // setting hours
+            console.log('currentDate', currentDate)
+            console.log("today", today);
 
             if (today.getDate() === currentDate.getDate()) {
                 currentDate.setHours(
@@ -50,13 +59,22 @@ export function BookingCalendar({ doctorInfo }) {
                 currentDate.setMinutes(currentDate.getMinutes() + 30);
             }
             setDocSlots((prev) => [...prev, timeSlots]);
+            
         }
     };
+
     useEffect(() => {
         getAvailableSlots();
+        setLocation(location.pathname)
     }, [doctorInfo]);
 
-    console.log("doctorInfo", doctorInfo);
+        const bookAppointment = () => {
+            if (!token) {
+                showToast("warning", "Please login to book an appointment");
+                 return navigate("/login");
+            }
+            return navigate("/appointments/my-appointments");
+        };
 
     return (
         <div className="space-y-6">
@@ -103,7 +121,10 @@ export function BookingCalendar({ doctorInfo }) {
                         })}
                 </div>
             </div>
-            <Button className=" bg-teal-600 hover:bg-teal-500">
+            <Button
+                className=" bg-teal-600 hover:bg-teal-500"
+                onClick={bookAppointment}
+            >
                 Book an appointment
             </Button>
             <div className="mt-20">

@@ -1,12 +1,15 @@
 import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
+import  Header  from "@/components/Header";
 import { Outlet } from "react-router-dom";
 
 const MainLayout = () => {
     return (
         <div className="mx-4 sm:mx-[10%]">
             <Header />
-            <Outlet />
+            <main>
+                <Outlet />
+            </main>
+
             <Footer />
         </div>
     );

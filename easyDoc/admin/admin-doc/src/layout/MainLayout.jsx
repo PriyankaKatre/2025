@@ -24,14 +24,14 @@ const MainLayout = () => {
               Filter
             </Button>
             <div
-              className={` md:flex md:w-1/4 ${
+              className={` md:flex md:w-1/6 ${
                 showFilter ? "block mb-5" : "hidden"
               }`}
             >
               <Sidebar />
             </div>
 
-            <div className="w-3/4 p-4">
+            <div className="w-5/6 p-4">
               <Outlet />
             </div>
           </div>

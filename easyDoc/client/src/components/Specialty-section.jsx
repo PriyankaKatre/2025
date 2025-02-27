@@ -24,7 +24,7 @@ export function SpecialtySection() {
         <section className="py-16">
             <div className="container">
                 <h2 className="text-2xl font-bold text-center mb-4">
-                    Discover by Specialty
+                    Search by Specialty
                 </h2>
                 <p className="text-center text-muted-foreground mb-8">
                     Seamlessly navigate our extensive directory of medical

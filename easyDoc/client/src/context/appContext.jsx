@@ -1,25 +1,30 @@
 import showToast from "@/utils/toast";
 import axios from "axios";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useMemo, useState } from "react";
 
 export const AppContext = createContext();
 
 export const AppContextProvider = (props) => {
-    const [token, setToken] = useState(
-        localStorage.getItem("token") ? localStorage.getItem("token") : ""
-    );
+    const [token, setToken] = useState(localStorage.getItem("token") || "");
+    const [slotPageLocation, setLocation] = useState(null);
     const currencySymbol = "£";
     const backendurl = import.meta.env.VITE_BACKEND_URL;
     const [doctors, setDoctors] = useState([]);
-    const [userData, setUserData] = useState(false);
+    const [userData, setUserData] = useState(null); // Initialize with `null`
+
     const getDoctorsList = async () => {
         try {
             const { data } = await axios.get(`${backendurl}/api/doctor/list`);
             if (data.success) {
                 setDoctors(data.doctors);
+            } else {
+                console.error("Failed to fetch doctors list:", data.message);
             }
         } catch (err) {
-            console.log(err);
+            console.error(
+                "Error fetching doctors list:",
+                err.response || err.message
+            );
         }
     };
 
@@ -28,42 +33,66 @@ export const AppContextProvider = (props) => {
             const { data } = await axios.get(
                 `${backendurl}/api/user/user-profile`,
                 {
-                    headers: {
-                        token,
-                    },
+                    headers: { token },
                 }
             );
             if (data.success) {
                 setUserData(data.userData);
-            } else { 
-                showToast("error", data.message);
+            } else {
+                showToast("error", `Error: ${data.message}`);
             }
         } catch (err) {
-            showToast('error', 'Failed to get user data')
+            console.error("getUserData failed:", err.response || err.message);
+            showToast("error", "Failed to get user data.");
         }
     };
+
     useEffect(() => {
-        getDoctorsList();
+        getDoctorsList(); // Fetch doctors list only once on mount
     }, []);
 
-     useEffect(() => {
-         if (token) {
-             getUserData();
-         } else { 
-             setUserData(false)
-         }      
-     }, [token]);
+    useEffect(() => {
+        if (token) {
+            getUserData();
+        } else {
+            setUserData(null); // Reset userData when token is removed
+        }
+    }, [token]);
 
-    const value = {
-        doctors,
-        userData,
-        setUserData,
-        currencySymbol,
-        backendurl,
-        token,
-        setToken,
-    };
+    // Sync token with localStorage
+    useEffect(() => {
+        if (token) {
+            localStorage.setItem("token", token);
+        } else {
+            localStorage.removeItem("token");
+        }
+    }, [token]);
 
+        const value = useMemo(
+            () => ({
+                doctors,
+                getDoctorsList,
+                getUserData,
+                userData,
+                setUserData,
+                currencySymbol,
+                backendurl,
+                token,
+                setToken,
+                slotPageLocation,
+                setLocation,
+            }),
+            [
+                doctors,
+                userData,
+                currencySymbol,
+                backendurl,
+                token,
+                slotPageLocation,
+                getDoctorsList,
+                getUserData,
+            ]
+        );
     return (
         <AppContext.Provider value={value}>
             {props.children}

@@ -36,7 +36,7 @@ export function DoctorsSection({ docId, speciality }) {
                 </div>
                 <div className="flex justify-center">
                     <Button
-                        className="bg-teal-600  hover:bg-teal-500 px-12 py-3 rounded-full mt-10"
+                        className="bg-teal-600  hover:bg-teal-500 px-12 py-3 rounded-full mt-10 text-base"
                         onClick={() => {
                             scrollTo(0, 0), navigate("/doctors");
                         }}
