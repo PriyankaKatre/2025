@@ -15,6 +15,6 @@ userRouter.post("/register", registerUser);
 userRouter.post("/login", loginUser);
 userRouter.get("/user-profile", authUser, getUserProfile);
 userRouter.post(
-  "/update-profile
+  "/update-profile", authUser, updateProfile)
 userRouter.get("/book-appointment", authUser, bookAppointment);
 
