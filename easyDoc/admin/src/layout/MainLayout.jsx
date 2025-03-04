@@ -1,10 +1,11 @@
 import { Outlet } from "react-router-dom";
-import Navbar from "../components/Navbar";
 import { useContext, useState } from "react";
 import { AdminContext } from "@/context/AdminContext";
 import Login from "@/pages/Login";
-import { Sidebar } from "../components/sideBar";
+
 import { Button } from "@/components/ui/button";
+import { Sidebar } from "@/components/SideBar";
+import Navbar from "@/components/Navbar";
 
 const MainLayout = () => {
   const { atoken } = useContext(AdminContext);

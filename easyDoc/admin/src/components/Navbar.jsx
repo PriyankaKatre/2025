@@ -5,7 +5,7 @@ import { Badge } from "./ui/badge";
 import logo from "../assets/logo.svg";
 import { useNavigate } from "react-router-dom";
 
-const Nabar = () => {
+const Navbar = () => {
   const navigate = useNavigate();
   const { atoken, setatoken } = useContext(AdminContext);
 
@@ -46,4 +46,4 @@ const Nabar = () => {
   );
 };
 
-export default Nabar;
+export default Navbar;
