@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 const MainLayout = () => {
   const { atoken } = useContext(AdminContext);
   const [showFilter, setShowFilter] = useState(false);
-  console.log("showFilter", showFilter);
+
   return (
     <div className="mx-4 sm:mx-[10%] pt-5">
       {atoken ? (
