@@ -2,15 +2,15 @@
 
 import { createBrowserRouter } from "react-router-dom";
 import { lazy, Suspense  } from 'react';
-import MainLayout from '../layout/MainLayout';
-const Home = lazy(() => import("../pages/Home"))
-const Doctors = lazy(() => import("../pages/Doctors"));
-const About = lazy(() => import("../pages/About"));
-const Contact = lazy(() => import("../pages/Contact"));
-const Login = lazy(() => import("../pages/Login"));
-const Myprofile = lazy(() => import("../pages/My-profile"));
-const MyAppointments = lazy(() => import("../pages/My-appointments"));
-const Appointments = lazy(() => import("../pages/Appointments"));
+import MainLayout from "@/layout/MainLayout";
+import Home from "@/pages/Home";
+import Doctors from "@/pages/Doctors";
+import Login from "@/pages/Login";
+import About from "@/pages/About";
+import Contact from "@/pages/Contact";
+import MyProfile from "@/pages/My-profile";
+import MyAppointments from "@/pages/My-appointments";
+import Appointments from "@/pages/Appointments";
 
 const LazyLoad = (Component) => { 
     return (
@@ -31,7 +31,7 @@ const appRouter = createBrowserRouter([
             { path: "/login", element: LazyLoad(Login) },
             { path: "/about", element: LazyLoad(About) },
             { path: "/contact", element: LazyLoad(Contact) },
-            { path: "/my-profile", element: LazyLoad(Myprofile) },
+            { path: "/my-profile", element: LazyLoad(MyProfile) },
             {
                 path: "/appointments/my-appointments",
                 element: LazyLoad(MyAppointments),

@@ -1,0 +1,309 @@
+(0:00) Improving an existing quality control tool which is being used by back-office users of a stock (0:05) exchange and financial information company. This tool validates the data coming from various (0:11) sources and generates alerts if data doesn't meet the criteria defined in the algorithms. (0:16) Designing and developing user interface using ReactJS, Redux for SPA development.
+(0:21) Developing responsive application that can be served to desktop, (0:25) tablet and mobile users using ReactJS. Maintaining states in the stores and (0:30) dispatch the actions using Redux. Upgrading entire applications UI library, (0:35) element framework, from old version to latest version.
+Interacting with testing team, (0:41) scrum master and business analysts for fixing the issues. Performing system testing for complete UI (0:47) after fixing the issues which were reported by testing team. Following an agile development (0:52) process for change delivery.
+
+// {
+//   "sessions": [
+//     {
+//       "sourceName": "Example Audio",
+//       "sentences": [
+//         {
+//           "speakerId": "speaker1",
+//           "startTime": 0,
+//           "duration": 10,
+//           "tokens": [
+//             { "word": "Improving", "startTime": 0, "duration": 1 },
+//             { "word": "an", "startTime": 1, "duration": 0.5 },
+//             { "word": "existing", "startTime": 1.5, "duration": 1 },
+//             { "word": "quality", "startTime": 2.5, "duration": 1 },
+//             { "word": "control", "startTime": 3.5, "duration": 1 },
+//             { "word": "tool", "startTime": 4.5, "duration": 1 },
+//             { "word": "which", "startTime": 5.5, "duration": 0.5 },
+//             { "word": "is", "startTime": 6, "duration": 0.3 },
+//             { "word": "being", "startTime": 6.3, "duration": 0.7 },
+//             { "word": "used", "startTime": 7, "duration": 0.5 },
+//             { "word": "by", "startTime": 7.5, "duration": 0.3 },
+//             { "word": "back-office", "startTime": 7.8, "duration": 1 },
+//             { "word": "users", "startTime": 8.8, "duration": 0.7 },
+//             { "word": "of", "startTime": 9.5, "duration": 0.3 },
+//             { "word": "a", "startTime": 9.8, "duration": 0.3 },
+//             { "word": "stock", "startTime": 10.1, "duration": 0.5 }
+//           ],
+//           "isParagraphEnd": false
+//         },
+//         {
+//           "speakerId": "speaker2",
+//           "startTime": 10,
+//           "duration": 12,
+//           "tokens": [
+//             { "word": "exchange", "startTime": 10, "duration": 1 },
+//             { "word": "and", "startTime": 11, "duration": 0.3 },
+//             { "word": "financial", "startTime": 11.3, "duration": 1 },
+//             { "word": "information", "startTime": 12.3, "duration": 1 },
+//             { "word": "company", "startTime": 13.3, "duration": 0.7 },
+//             { "word": "This", "startTime": 14, "duration": 0.3 },
+//             { "word": "tool", "startTime": 14.3, "duration": 0.5 },
+//             { "word": "validates", "startTime": 14.8, "duration": 1 },
+//             { "word": "the", "startTime": 15.8, "duration": 0.3 },
+//             { "word": "data", "startTime": 16.1, "duration": 0.6 },
+//             { "word": "coming", "startTime": 16.7, "duration": 0.7 },
+//             { "word": "from", "startTime": 17.4, "duration": 0.3 },
+//             { "word": "various", "startTime": 17.7, "duration": 0.7 },
+//             { "word": "sources", "startTime": 18.4, "duration": 0.7 }
+//           ],
+//           "isParagraphEnd": false
+//         },
+//         {
+//           "speakerId": "speaker3",
+//           "startTime": 19,
+//           "duration": 10,
+//           "tokens": [
+//             { "word": "and", "startTime": 19, "duration": 0.3 },
+//             { "word": "generates", "startTime": 19.3, "duration": 0.8 },
+//             { "word": "alerts", "startTime": 20.1, "duration": 0.7 },
+//             { "word": "if", "startTime": 20.8, "duration": 0.3 },
+//             { "word": "data", "startTime": 21.1, "duration": 0.6 },
+//             { "word": "doesn’t", "startTime": 21.7, "duration": 0.8 },
+//             { "word": "meet", "startTime": 22.5, "duration": 0.5 },
+//             { "word": "the", "startTime": 23, "duration": 0.3 },
+//             { "word": "criteria", "startTime": 23.3, "duration": 0.7 },
+//             { "word": "defined", "startTime": 24, "duration": 0.7 },
+//             { "word": "in", "startTime": 24.7, "duration": 0.3 },
+//             { "word": "the", "startTime": 25, "duration": 0.3 },
+//             { "word": "algorithms", "startTime": 25.3, "duration": 1 }
+//           ],
+//           "isParagraphEnd": false
+//         },
+//         {
+//           "speakerId": "speaker4",
+//           "startTime": 26,
+//           "duration": 10,
+//           "tokens": [
+//             { "word": "Designing", "startTime": 26, "duration": 1 },
+//             { "word": "and", "startTime": 27, "duration": 0.3 },
+//             { "word": "developing", "startTime": 27.3, "duration": 1 },
+//             { "word": "user", "startTime": 28.3, "duration": 0.4 },
+//             { "word": "interface", "startTime": 28.7, "duration": 1 },
+//             { "word": "using", "startTime": 29.7, "duration": 0.5 },
+//             { "word": "React", "startTime": 30.2, "duration": 0.7 },
+//             { "word": "Js", "startTime": 30.9, "duration": 0.4 },
+//             { "word": "Redux", "startTime": 31.3, "duration": 0.7 },
+//             { "word": "for", "startTime": 32, "duration": 0.3 },
+//             { "word": "SPA", "startTime": 32.3, "duration": 0.6 },
+//             { "word": "development", "startTime": 32.9, "duration": 1 }
+//           ],
+//           "isParagraphEnd": true
+//         }
+//       ],
+//       "speakers": [
+//         {
+//           "id": "speaker1",
+//           "name": "John Doe"
+//         },
+//         {
+//           "id": "speaker2",
+//           "name": "Jane Smith"
+//         },
+//         {
+//           "id": "speaker3",
+//           "name": "Alice Brown"
+//         },
+//         {
+//           "id": "speaker4",
+//           "name": "Bob White"
+//         }
+//       ]
+//     }
+//   ]
+// }
+
+
+{
+  "sessions": [
+    {
+      "sourceName": "Example Audio",
+      "sentences": [
+        {
+          "speakerId": "speaker1",
+          "startTime": 0,
+          "duration": 13,
+          "tokens": [
+            { "word": "Improving", "startTime": 0.0, "duration": 0.33 },
+            { "word": "an", "startTime": 0.33, "duration": 0.33 },
+            { "word": "existing", "startTime": 0.66, "duration": 0.34 },
+            { "word": "quality", "startTime": 1.0, "duration": 0.33 },
+            { "word": "control", "startTime": 1.33, "duration": 0.33 },
+            { "word": "tool", "startTime": 1.66, "duration": 0.34 },
+            { "word": "which", "startTime": 2.0, "duration": 0.33 },
+            { "word": "is", "startTime": 2.33, "duration": 0.33 },
+            { "word": "being", "startTime": 2.66, "duration": 0.34 },
+            { "word": "used", "startTime": 3.0, "duration": 0.33 },
+            { "word": "by", "startTime": 3.33, "duration": 0.33 },
+            { "word": "back-office", "startTime": 3.66, "duration": 0.34 },
+            { "word": "users", "startTime": 4.0, "duration": 0.33 },
+            { "word": "of", "startTime": 4.33, "duration": 0.33 },
+            { "word": "a", "startTime": 4.66, "duration": 0.34 },
+            { "word": "stock", "startTime": 5.0, "duration": 0.33 },
+            { "word": "exchange", "startTime": 5.33, "duration": 0.33 },
+            { "word": "and", "startTime": 5.66, "duration": 0.34 },
+            { "word": "financial", "startTime": 6.0, "duration": 0.33 },
+            { "word": "information", "startTime": 6.33, "duration": 0.33 },
+            { "word": "company.", "startTime": 6.66, "duration": 0.34 }
+          ],
+          "isParagraphEnd": false
+        },
+        {
+          "speakerId": "speaker2",
+          "startTime": 13,
+          "duration": 13,
+          "tokens": [
+            { "word": "This", "startTime": 7.5, "duration": 0.4 },
+            { "word": "tool", "startTime": 7.9, "duration": 0.4 },
+            { "word": "validates", "startTime": 8.3, "duration": 0.5 },
+            { "word": "the", "startTime": 8.8, "duration": 0.3 },
+            { "word": "data", "startTime": 9.1, "duration": 0.4 },
+            { "word": "coming", "startTime": 9.5, "duration": 0.4 },
+            { "word": "from", "startTime": 9.9, "duration": 0.3 },
+            { "word": "various", "startTime": 10.2, "duration": 0.5 },
+            { "word": "sources", "startTime": 10.7, "duration": 0.5 },
+            { "word": "and", "startTime": 11.2, "duration": 0.3 },
+            { "word": "generates", "startTime": 11.5, "duration": 0.6 },
+            { "word": "alerts", "startTime": 12.1, "duration": 0.5 },
+            { "word": "if", "startTime": 12.6, "duration": 0.2 },
+            { "word": "data", "startTime": 12.8, "duration": 0.3 },
+            { "word": "doesn't", "startTime": 13.1, "duration": 0.4 },
+            { "word": "meet", "startTime": 13.5, "duration": 0.3 },
+            { "word": "the", "startTime": 13.8, "duration": 0.2 },
+            { "word": "criteria", "startTime": 14.0, "duration": 0.5 },
+            { "word": "defined", "startTime": 14.5, "duration": 0.4 },
+            { "word": "in", "startTime": 14.9, "duration": 0.2 },
+            { "word": "the", "startTime": 15.1, "duration": 0.2 },
+            { "word": "algorithms.", "startTime": 15.3, "duration": 0.7 }
+          ],
+          "isParagraphEnd": false
+        },
+        {
+          "speakerId": "speaker3",
+          "startTime": 26,
+          "duration": 13,
+          "tokens": [
+            { "word": "Designing", "startTime": 16.0, "duration": 0.4 },
+            { "word": "and", "startTime": 16.4, "duration": 0.2 },
+            { "word": "developing", "startTime": 16.6, "duration": 0.5 },
+            { "word": "user", "startTime": 17.1, "duration": 0.3 },
+            { "word": "interface", "startTime": 17.4, "duration": 0.6 },
+            { "word": "using", "startTime": 18.0, "duration": 0.4 },
+            { "word": "ReactJS,", "startTime": 18.4, "duration": 0.5 },
+            { "word": "Redux", "startTime": 18.9, "duration": 0.4 },
+            { "word": "for", "startTime": 19.3, "duration": 0.2 },
+            { "word": "SPA", "startTime": 19.5, "duration": 0.4 },
+            { "word": "development.", "startTime": 19.9, "duration": 0.7 },
+            { "word": "Developing", "startTime": 20.6, "duration": 0.5 },
+            { "word": "responsive", "startTime": 21.1, "duration": 0.5 },
+            { "word": "application", "startTime": 21.6, "duration": 0.5 },
+            { "word": "that", "startTime": 22.1, "duration": 0.3 },
+            { "word": "can", "startTime": 22.4, "duration": 0.3 },
+            { "word": "be", "startTime": 22.7, "duration": 0.2 },
+            { "word": "served", "startTime": 22.9, "duration": 0.4 },
+            { "word": "to", "startTime": 23.3, "duration": 0.2 },
+            { "word": "desktop,", "startTime": 23.5, "duration": 0.6 },
+            { "word": "tablet", "startTime": 24.1, "duration": 0.5 },
+            { "word": "and", "startTime": 24.6, "duration": 0.2 },
+            { "word": "mobile", "startTime": 24.8, "duration": 0.5 },
+            { "word": "users", "startTime": 25.3, "duration": 0.4 },
+            { "word": "using", "startTime": 25.7, "duration": 0.4 },
+            { "word": "ReactJS.", "startTime": 26.1, "duration": 0.6 }
+          ],
+          "isParagraphEnd": false
+        },
+        {
+          "speakerId": "speaker4",
+          "startTime": 39,
+          "duration": 21,
+          "tokens": [
+            { "word": "Maintaining", "startTime": 39.0, "duration": 0.8 },
+            { "word": "states", "startTime": 39.8, "duration": 0.7 },
+            { "word": "in", "startTime": 40.5, "duration": 0.3 },
+            { "word": "the", "startTime": 40.8, "duration": 0.3 },
+            { "word": "stores", "startTime": 41.1, "duration": 0.7 },
+            { "word": "and", "startTime": 41.8, "duration": 0.3 },
+            { "word": "dispatch", "startTime": 42.1, "duration": 0.7 },
+            { "word": "the", "startTime": 42.8, "duration": 0.3 },
+            { "word": "actions", "startTime": 43.1, "duration": 0.7 },
+            { "word": "using", "startTime": 43.8, "duration": 0.5 },
+            { "word": "Redux.", "startTime": 44.3, "duration": 0.7 },
+            { "word": "Upgrading", "startTime": 45.0, "duration": 0.8 },
+            { "word": "entire", "startTime": 45.8, "duration": 0.6 },
+            { "word": "applications", "startTime": 46.4, "duration": 0.9 },
+            { "word": "UI", "startTime": 47.3, "duration": 0.4 },
+            { "word": "library,", "startTime": 47.7, "duration": 0.7 },
+            { "word": "element", "startTime": 48.4, "duration": 0.7 },
+            { "word": "framework,", "startTime": 49.1, "duration": 0.8 },
+            { "word": "from", "startTime": 49.9, "duration": 0.4 },
+            { "word": "old", "startTime": 50.3, "duration": 0.5 },
+            { "word": "version", "startTime": 50.8, "duration": 0.6 },
+            { "word": "to", "startTime": 51.4, "duration": 0.3 },
+            { "word": "latest", "startTime": 51.7, "duration": 0.6 },
+            { "word": "version.", "startTime": 52.3, "duration": 0.7 },
+            { "word": "Interacting", "startTime": 53.0, "duration": 0.9 },
+            { "word": "with", "startTime": 53.9, "duration": 0.4 },
+            { "word": "testing", "startTime": 54.3, "duration": 0.6 },
+            { "word": "team,", "startTime": 54.9, "duration": 0.5 },
+            { "word": "scrum", "startTime": 55.4, "duration": 0.5 },
+            { "word": "master", "startTime": 55.9, "duration": 0.6 },
+            { "word": "and", "startTime": 56.5, "duration": 0.3 },
+            { "word": "business", "startTime": 56.8, "duration": 0.7 },
+            { "word": "analysts", "startTime": 57.5, "duration": 0.7 },
+            { "word": "for", "startTime": 58.2, "duration": 0.3 },
+            { "word": "fixing", "startTime": 58.5, "duration": 0.6 },
+            { "word": "the", "startTime": 59.1, "duration": 0.3 },
+            { "word": "issues.", "startTime": 59.4, "duration": 0.6 },
+            { "word": "Performing", "startTime": 60.0, "duration": 0.8 },
+            { "word": "system", "startTime": 60.8, "duration": 0.6 },
+            { "word": "testing", "startTime": 61.4, "duration": 0.6 },
+            { "word": "for", "startTime": 62.0, "duration": 0.3 },
+            { "word": "complete", "startTime": 62.3, "duration": 0.7 },
+            { "word": "UI", "startTime": 63.0, "duration": 0.4 },
+            { "word": "after", "startTime": 63.4, "duration": 0.5 },
+            { "word": "fixing", "startTime": 63.9, "duration": 0.6 },
+            { "word": "the", "startTime": 64.5, "duration": 0.3 },
+            { "word": "issues", "startTime": 64.8, "duration": 0.6 },
+            { "word": "which", "startTime": 65.4, "duration": 0.4 },
+            { "word": "were", "startTime": 65.8, "duration": 0.4 },
+            { "word": "reported", "startTime": 66.2, "duration": 0.7 },
+            { "word": "by", "startTime": 66.9, "duration": 0.3 },
+            { "word": "testing", "startTime": 67.2, "duration": 0.6 },
+            { "word": "team.", "startTime": 67.8, "duration": 0.6 },
+            { "word": "Following", "startTime": 68.4, "duration": 0.7 },
+            { "word": "an", "startTime": 69.1, "duration": 0.3 },
+            { "word": "agile", "startTime": 69.4, "duration": 0.5 },
+            { "word": "development", "startTime": 69.9, "duration": 0.8 },
+            { "word": "process", "startTime": 70.7, "duration": 0.6 },
+            { "word": "for", "startTime": 71.3, "duration": 0.3 },
+            { "word": "change", "startTime": 71.6, "duration": 0.5 },
+            { "word": "delivery.", "startTime": 72.1, "duration": 0.7 }
+          ],
+          "isParagraphEnd": true
+        }
+      ],
+      "speakers": [
+        {
+          "id": "speaker1",
+          "name": "John Doe"
+        },
+        {
+          "id": "speaker2",
+          "name": "Jane Smith"
+        },
+        {
+          "id": "speaker3",
+          "name": "Alice Brown"
+        },
+        {
+          "id": "speaker4",
+          "name": "Bob White"
+        }
+      ]
+    }
+  ]
+}

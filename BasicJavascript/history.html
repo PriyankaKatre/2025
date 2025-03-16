@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SPA Example</title>
+    <style>
+        .section {
+            display: none;
+        }
+        .section.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#" onclick="navigateTo('home')">Home</a>
+        <a href="#" onclick="navigateTo('about')">About</a>
+    </nav>
+    <div id="home" class="section active">
+        <h1>Home</h1>
+        <p>Welcome to the Home section.</p>
+    </div>
+    <div id="about" class="section">
+        <h1>About</h1>
+        <p>Welcome to the About section.</p>
+    </div>
+
+    <script>
+        function navigateTo(section, isPopState = false) {
+            console.log('Navigating to:', section); // Log statement
+
+            // Prevent unnecessary navigation if already on the target section
+            if (document.getElementById(section).classList.contains('active')) {
+                console.log(section, 'is already active');
+                return;
+            }
+
+            document.querySelectorAll('.section').forEach((div) => {
+                div.classList.remove('active');
+            });
+            document.getElementById(section).classList.add('active');
+            console.log('Set section as active:', section);
+
+            // Use pushState to update the URL, but skip during popstate events
+            if (!isPopState) {
+                window.history.pushState({ section: section }, section, `/${section}`);
+                console.log('pushState called with:', { section: section });
+            }
+        }
+
+        // Handle the back/forward buttons
+        window.addEventListener('popstate', (event) => {
+            console.log('event.state', event.state)
+            const section = event.state ? event.state.section : 'home';
+            console.log('popstate event:', section);
+            navigateTo(section, true); // Indicate it's a popstate event
+        });
+
+        // Initialize the correct section on page load
+        window.addEventListener('load', () => {
+            console.log(window.location.pathname.substring(1))
+            const initialSection = window.location.pathname.substring(1) || 'home';
+            console.log('Initial load section:', initialSection);
+            navigateTo(initialSection);
+
+            // Set the initial state to prevent unnecessary popstate event
+            window.history.replaceState({ section: initialSection }, initialSection, `/${initialSection}`);
+        });
+    </script>
+</body>
+</html>

@@ -5,11 +5,9 @@ import appRouter from './routes/routes';
 
 export default function App() {
     return (
-        <>
-            <main>
-                <RouterProvider router={appRouter}></RouterProvider>
-            </main>
-        </>
+        <main>
+            <RouterProvider router={appRouter}></RouterProvider>
+        </main>
     );
 }
 

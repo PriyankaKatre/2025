@@ -1,1 +1,102 @@
-https://github.com/lydiahallie/javascript-questions
+"You are given an array of letter pairs where each pair represents a directed edge from one letter to another, like ['s>p', 'p>a', 'a>i', 'i>n']. Your task is to construct the word formed by these pairs. Explain your approach and write a function to solve this problem."
+
+https://leetcode.com/problems/find-the-smallest-divisor-given-a-threshold/description/?envType=problem-list-v2&envId=binary-search
+https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/description/?envType=problem-list-v2&envId=binary-search
+https://leetcode.com/problems/koko-eating-bananas/description/?envType=problem-list-v2&envId=binary-search
+
+https://codeforces.com/problemset/problem/1873/E
+
+1. Implement a function to perform a binary search on a sorted array to find the index of a given target value.
+Input:
+arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+target = 5
+Output:
+Index: 4
+
+2. How would you explain the value of automation to a non-technical stakeholder?
+3. Can you describe a time when you improved a process that significantly impacted your team’s efficiency?
+4. How would you optimise a test suite that takes too long to execute?
+5. Given an array of integers, write a function to find the maximum product of any two numbers.
+6. Implement a function to detect a cycle in a linked list.
+7. Write a function to find the longest substring without repeating characters.
+8. Describe how you would test a multi-tier application with distributed systems.
+9. How would you write tests for an API with dynamic response data (e.g., timestamps or GUIDs)?
+10. What’s your approach to debugging a flaky test in a CI/CD pipeline?
+11. Can you describe a time when you identified a major quality issue in production? How did you handle it?
+12. What is the difference between TCP and UDP? Give real-world examples of their usage and also the three-way handshake process in TCP.
+13. How does DNS resolution work? What is the role of DNS caching?
+14. What is virtual memory, and how does it work?
+15. Write a Linux command to find the top 10 largest files in a directory.
+
+1. Write a program that takes a string as input and reverses only the vowels in the string, while keeping all other characters in their original positions.
+𝐈𝐧𝐩𝐮𝐭: "programming"
+𝐎𝐮𝐭𝐩𝐮𝐭: "prigrammong"
+
+2. Write a function to determine the length of the longest substring in a given string that contains no repeating characters.
+𝐈𝐧𝐩𝐮𝐭: "dvdf"
+𝐎𝐮𝐭𝐩𝐮𝐭: 3
+
+3. Write a function to detect if a cycle exists in a given singly linked list. 
+𝐈𝐧𝐩𝐮𝐭: 1 -> 2 -> 3 -> 4 -> 5 -> 2 (cycle back to node 2)
+𝐎𝐮𝐭𝐩𝐮𝐭: true
+
+4. Write a program to calculate the frequency of each character in a given string and display the results.
+𝐈𝐧𝐩𝐮𝐭: "aabbcc"
+𝐎𝐮𝐭𝐩𝐮𝐭: {'a': 2, 'b': 2, 'c': 2}
+
+
+Interviewing a senior-level developer involves assessing their technical expertise, problem-solving skills, and ability to contribute to team dynamics. Below are types of questions that align with the role and responsibilities outlined:
+
+Technical Expertise
+ReactJS and Frontend Development
+
+Can you explain the differences between class components and functional components in React? When would you use one over the other?
+How would you optimize the performance of a large React application?
+Can you describe a scenario where you used React hooks effectively to manage state or side effects?
+How do you handle global state management in React applications? Can you compare using Context API versus libraries like Redux?
+What strategies do you use to ensure a React component is reusable and maintainable?
+Web Standards and Best Practices
+
+How do you ensure cross-browser compatibility when developing a web application?
+Can you explain the role of semantic HTML and its importance in modern web development?
+Describe a situation where you had to debug a complex CSS issue. How did you approach it?
+API and Integration
+
+How do you handle error states when consuming a REST API in a React application?
+Can you design an efficient API structure for a web application that interacts heavily with a frontend?
+How would you handle pagination or infinite scrolling in a React application consuming REST APIs?
+Version Control and Collaboration
+
+How do you manage branching and merging in Git when working with a team?
+Describe a challenging Git conflict you faced and how you resolved it.
+What is your process for conducting and receiving code reviews?
+Problem-Solving and Design
+System Design
+
+How would you design a component-based system to handle dynamic form inputs in React?
+Can you walk us through your thought process for designing a scalable frontend architecture for a web application?
+How would you approach adding real-time features (e.g., chat) to an existing React app?
+Debugging and Optimization
+
+Tell us about a time you encountered a severe performance issue in a web application. How did you identify and resolve it?
+How do you debug memory leaks in a React application?
+What tools or methods do you use to profile and optimize JavaScript code?
+Agile Practices and Collaboration
+Team Collaboration
+
+How do you handle conflicting opinions in a team when deciding on a technical approach?
+Share an example of how you contributed to the success of an agile project.
+How do you prioritize tasks in a sprint to ensure deliverables are met?
+Estimation and Planning
+
+How do you estimate the effort required for a feature or task?
+What steps do you take when a planned task is more complex than initially estimated?
+Behavioral Questions
+Past Experiences
+
+Can you describe a project where your technical contributions had a significant impact on its success?
+Share an instance where you learned a new technology or skill to solve a problem. How did you apply it?
+Adaptability and Growth
+
+How do you keep up with the latest trends and best practices in web development?
+What challenges have you faced when transitioning to new tools or frameworks, and how did you overcome them?

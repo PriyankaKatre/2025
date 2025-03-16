@@ -1,0 +1,36 @@
+{
+  "tasks": [
+    {
+      "id": "task1_001",
+      "text": "Developing a real-time data analysis tool for monitoring stock market trends and providing instant feedback to users."
+    },
+    {
+      "id": "task1_002",
+      "text": "Creating a user-friendly dashboard for financial advisors to manage and visualize client portfolios."
+    },
+    {
+      "id": "task1_003",
+      "text": "Implementing security features to protect sensitive financial data from potential cyber threats."
+    },
+    {
+      "id": "task1_004",
+      "text": "Optimizing the performance of the data processing system to handle large volumes of financial transactions efficiently."
+    },
+    {
+      "id": "task1_005",
+      "text": "Designing an intuitive mobile app for users to access their financial information on-the-go."
+    },
+    {
+      "id": "task1_006",
+      "text": "Collaborating with the marketing team to integrate user feedback and improve the overall user experience."
+    },
+    {
+      "id": "task1_007",
+      "text": "Conducting regular code reviews to ensure the highest standards of code quality and maintainability."
+    },
+    {
+      "id": "task1_008",
+      "text": "Following Agile methodologies to ensure timely delivery of features and improvements."
+    }
+  ]
+}

@@ -61,7 +61,7 @@ export const AppContextProvider = (props) => {
 
     // Sync token with localStorage
     useEffect(() => {
-        if (token) {
+        if (!token) {
             localStorage.setItem("token", token);
         } else {
             localStorage.removeItem("token");

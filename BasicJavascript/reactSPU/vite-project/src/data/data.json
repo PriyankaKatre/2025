@@ -1,0 +1,75 @@
+{
+  "tasks": [
+    {
+      "id": "task_001",
+      "text": "Improving an existing quality control tool which is being used by back-office users of a stock exchange and financial information company. This tool validates the data coming from various sources and generates alerts if data doesn’t meet the criteria defined in the algorithms."
+    },
+    {
+      "id": "task_002",
+      "text": "Developing responsive application"
+    },
+    {
+      "id": "task_003",
+      "text": "Redux for SPA development.  Developing responsive application that can be served to Desktop Tablet and Mobile users using ReactJs."
+    },
+    {
+      "id": "task_004",
+      "text": "Maintaining states in the stores and dispatched the actions using Redux."
+    },
+    {
+      "id": "task_005",
+      "text": "Upgrading entire application’s UI library (Element Framework) from old version to latest version."
+    },
+    {
+      "id": "task_006",
+      "text": "Interacting with Testing team, Scrum Master and Business Analysts for fixing the issues."
+    },
+    {
+      "id": "task_007",
+      "text": "Performing system testing for complete UI after fixing the issues which were reported by testing team."
+    },
+    {
+      "id": "task_008",
+      "text": "Following an Agile development process for change delivery."
+    }
+  ]
+}
+
+
+{
+  "filename": "example_transcript.mp3",
+  "transcriptIndex": 0,
+  "content": {
+    "sessions": [
+      {
+        "sentences": [
+          {
+            "startTime": 0,
+            "duration": 2,
+            "speakerId": "s1",
+            "tokens": [
+              { "startTime": 0, "duration": 1, "word": "Hello" },
+              { "startTime": 1, "duration": 1, "word": "world" }
+            ],
+            "isParagraphEnd": false
+          },
+          {
+            "startTime": 2,
+            "duration": 3,
+            "speakerId": "s2",
+            "tokens": [
+              { "startTime": 2, "duration": 1, "word": "How" },
+              { "startTime": 3, "duration": 1, "word": "are" },
+              { "startTime": 4, "duration": 1, "word": "you?" }
+            ],
+            "isParagraphEnd": true
+          }
+        ],
+        "speakers": [
+          { "id": "s1", "name": "Speaker 1" },
+          { "id": "s2", "name": "Speaker 2" }
+        ]
+      }
+    ]
+  }
+}

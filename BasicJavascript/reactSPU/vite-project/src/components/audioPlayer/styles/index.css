@@ -1,0 +1,8 @@
+.audio-player {
+    audio {
+        background-color: #f1f3f4;
+        &::webkit-media-controls-play-button {
+            background-color: #334BFF;
+        }
+    }
+}
